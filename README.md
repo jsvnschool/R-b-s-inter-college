@@ -1,825 +1,209 @@
-<!DOCTYPE html>
-<html lang="hi">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Telecorcel IT Solutions Pvt Ltd | Bulk SMS, WhatsApp API & Software Solutions</title>
-  <meta name="description" content="Telecorcel IT Solutions Pvt Ltd provides enterprise Bulk SMS, Transactional OTP routes, WhatsApp Business API, Voice IVR, Web & Mobile App Development, CRM & ERP software in Sector 62 Noida." />
-  <meta name="keywords" content="Telecorcel IT Solutions Pvt Ltd, Bulk SMS Provider Noida, Transactional SMS, OTP Route, WhatsApp Cloud API, DLT Registration, Software Development Noida Sector 62, Satyam Sharma, Shivam Sharma" />
-  
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Telecorcel IT Solutions Pvt Ltd",
-    "telephone": ["+91-9012574505", "+91-7678519164"],
-    "email": "telecorcelitsolutionshelp@gmail.com",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Block A, Industrial Area, Sector 62",
-      "addressLocality": "Noida",
-      "addressRegion": "Uttar Pradesh",
-      "postalCode": "201309",
-      "addressCountry": "IN"
-    },
-    "founder": { "@type": "Person", "name": "Satyam Sharma", "jobTitle": "CEO" },
-    "employee": { "@type": "Person", "name": "Shivam Sharma", "jobTitle": "Sales Manager" }
-  }
-  </script>
+import sqlite3
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+# --- DATABASE SETUP ---
+conn = sqlite3.connect("js_vidya_niketan.db")
+cursor = conn.cursor()
 
-  <style>
-    @keyframes floatSlow { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-7px); } }
-    @keyframes pulseGlow { 0%, 100% { opacity: 0.35; transform: scale(1); } 50% { opacity: 0.65; transform: scale(1.06); } }
-    @keyframes scrollTicker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-    
-    .page-section { display: none; }
-    .page-section.active { display: block; }
-    .hero-glow { animation: pulseGlow 6s infinite ease-in-out; }
-    .floating-card { animation: floatSlow 4s ease-in-out infinite; }
-    .ticker-wrapper { display: flex; width: 200%; animation: scrollTicker 32s linear infinite; }
-    .ticker-wrapper:hover { animation-play-state: paused; }
-    
-    #networkCanvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
-    #globeCanvas { width: 100%; height: 420px; outline: none; cursor: grab; }
-    #globeCanvas:active { cursor: grabbing; }
+# Database Table Setup
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS students (
+    roll_no TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    class_name TEXT NOT NULL,
+    maths_fa1 REAL DEFAULT 0, maths_fa2 REAL DEFAULT 0, maths_sa1 REAL DEFAULT 0,
+    maths_fa3 REAL DEFAULT 0, maths_fa4 REAL DEFAULT 0, maths_sa2 REAL DEFAULT 0,
+    sci_fa1 REAL DEFAULT 0, sci_fa2 REAL DEFAULT 0, sci_sa1 REAL DEFAULT 0,
+    sci_fa3 REAL DEFAULT 0, sci_fa4 REAL DEFAULT 0, sci_sa2 REAL DEFAULT 0,
+    eng_fa1 REAL DEFAULT 0, eng_fa2 REAL DEFAULT 0, eng_sa1 REAL DEFAULT 0,
+    eng_fa3 REAL DEFAULT 0, eng_fa4 REAL DEFAULT 0, eng_sa2 REAL DEFAULT 0,
+    hin_fa1 REAL DEFAULT 0, hin_fa2 REAL DEFAULT 0, hin_sa1 REAL DEFAULT 0,
+    hin_fa3 REAL DEFAULT 0, hin_fa4 REAL DEFAULT 0, hin_sa2 REAL DEFAULT 0
+)
+""")
+conn.commit()
 
-    .brand-glow { text-shadow: 0 0 20px rgba(52, 211, 153, 0.45), 0 0 40px rgba(16, 185, 129, 0.25); }
-    .brand-logo-card {
-      background: #ffffff;
-      padding: 4px 8px;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
-      border: 1px solid rgba(16, 185, 129, 0.4);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .service-box {
-      background: rgba(15, 23, 42, 0.7);
-      border: 1px solid rgba(51, 65, 85, 0.7);
-      transition: all 0.3s ease;
-    }
-    .service-box:hover {
-      transform: translateY(-4px);
-      border-color: #10b981;
-      box-shadow: 0 15px 30px -10px rgba(16, 185, 129, 0.25);
-    }
-  </style>
-</head>
-<body class="font-sans text-slate-800 bg-[#040810] flex flex-col min-h-screen relative selection:bg-emerald-500 selection:text-slate-950">
 
-  <aside class="fixed right-4 bottom-6 md:bottom-auto md:top-1/3 z-50 flex flex-col gap-3">
-    <a href="tel:+919012574505" title="Call Us" class="flex items-center justify-center w-12 h-12 rounded-full bg-slate-900/95 border border-emerald-500/50 text-emerald-400 hover:bg-emerald-500 hover:text-slate-950 shadow-2xl backdrop-blur transition">
-      <i class="fa-solid fa-phone text-lg"></i>
-    </a>
-    <a href="mailto:telecorcelitsolutionshelp@gmail.com" title="Email Us" class="flex items-center justify-center w-12 h-12 rounded-full bg-slate-900/95 border border-emerald-500/50 text-emerald-400 hover:bg-emerald-500 hover:text-slate-950 shadow-2xl backdrop-blur transition">
-      <i class="fa-solid fa-envelope text-lg"></i>
-    </a>
-    <a href="https://wa.me/919012574505" target="_blank" title="WhatsApp" class="flex items-center justify-center w-12 h-12 rounded-full bg-slate-900/95 border border-emerald-500/50 text-emerald-400 hover:bg-emerald-500 hover:text-slate-950 shadow-2xl backdrop-blur transition">
-      <i class="fa-brands fa-whatsapp text-2xl"></i>
-    </a>
-  </aside>
+# --- FUNCTIONS ---
 
-  <header class="bg-[#070e1a]/95 backdrop-blur-md sticky top-0 z-40 border-b border-slate-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-2.5 flex justify-between items-center gap-4">
-      
-      <a href="javascript:void(0)" onclick="showPage('home')" class="flex items-center gap-3.5 focus:outline-none" title="Telecorcel IT Solutions Pvt Ltd">
-        <div class="brand-logo-card h-12 sm:h-14 w-auto">
-          <svg viewBox="0 0 420 340" class="h-full w-auto" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 172 40 L 172 75 C 280 75, 385 110, 362 178 C 358 190, 350 202, 340 212 L 374 212 C 382 198, 388 184, 390 170 C 415 85, 290 40, 172 40 Z" fill="#70bd35"/>
-            <path d="M 120 72 C 50 115, 20 180, 52 230 C 88 285, 220 295, 320 230 C 342 215, 358 196, 365 178 L 340 178 C 328 196, 310 212, 292 222 C 200 275, 95 260, 68 215 C 45 175, 70 120, 120 85 Z" fill="#0e7a33"/>
-            <text x="210" y="148" font-family="'Segoe UI', Arial, sans-serif" font-size="28" font-weight="900" fill="#2d3748" text-anchor="middle" letter-spacing="2.5">TELECORCEL</text>
-            <text x="210" y="195" font-family="'Segoe UI', Arial, sans-serif" font-size="24" font-weight="900" fill="#2d3748" text-anchor="middle" letter-spacing="2.5">IT SOLUTIONS</text>
-            <text x="210" y="315" font-family="'Segoe UI', Arial, sans-serif" font-size="34" font-weight="900" fill="#2d3748" text-anchor="middle" letter-spacing="3.5">BULK SMS</text>
-          </svg>
-        </div>
 
-        <div class="flex flex-col">
-          <span class="text-xl sm:text-2xl md:text-3xl font-black text-white leading-none tracking-tight brand-glow">
-            TELECORCEL
-          </span>
-          <span class="text-[11px] sm:text-xs md:text-sm font-bold text-emerald-400 tracking-wider uppercase mt-1">
-            IT SOLUTIONS PVT LTD
-          </span>
-        </div>
-      </a>
+def add_student():
+    print("\n--- NEW STUDENT REGISTRATION ---")
+    roll = input("Roll Number dalo: ")
+    name = input("Student Name dalo: ")
+    cls = input("Class dalo: ")
 
-      <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-300">
-        <button onclick="showPage('home')" class="hover:text-emerald-400 transition">Home</button>
-        <button onclick="showPage('services')" class="hover:text-emerald-400 transition">Services</button>
-        <button onclick="showPage('pricing')" class="hover:text-emerald-400 transition">Pricing</button>
-        <button onclick="showPage('about')" class="hover:text-emerald-400 transition">About Us</button>
-        <button onclick="showPage('contact')" class="hover:text-emerald-400 transition">Contact Us</button>
-      </nav>
+    try:
+        cursor.execute(
+            "INSERT INTO students (roll_no, name, class_name) VALUES (?, ?, ?)",
+            (roll, name, cls),
+        )
+        conn.commit()
+        print(
+            f"✅ Student {name} (Roll No: {roll}) System me Add Ho Gaya Hai!"
+        )
+    except sqlite3.IntegrityError:
+        print("❌ Is Roll Number ka student pehle se majood hai!")
 
-      <button onclick="showPage('contact')" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs sm:text-sm font-black px-5 py-2.5 rounded-lg shadow-lg shadow-emerald-500/25 transition">
-        Get Started
-      </button>
-    </div>
-  </header>
 
-  <div class="bg-emerald-950/40 border-y border-emerald-500/20 text-emerald-300 text-xs py-2 overflow-hidden select-none">
-    <div class="ticker-wrapper font-medium tracking-wide">
-      <div class="flex gap-8 items-center px-4">
-        <span><i class="fa-solid fa-bolt text-emerald-400 mr-2"></i>Bulk SMS</span>
-        <span>•</span><span>Transactional & OTP SMS</span>
-        <span>•</span><span>Promotional & Flash SMS</span>
-        <span>•</span><span>Unicode Regional SMS</span>
-        <span>•</span><span>WhatsApp Business Cloud API</span>
-        <span>•</span><span>RCS Messaging</span>
-        <span>•</span><span>Voice SMS & IVR</span>
-        <span>•</span><span>Missed Call Services</span>
-        <span>•</span><span>DLT Support & Templates</span>
-        <span>•</span><span>Full-Stack Web Development</span>
-        <span>•</span><span>Android & iOS Apps</span>
-        <span>•</span><span>Custom CRM & ERP Software</span>
-        <span>•</span><span>Performance Marketing & SEO</span>
-      </div>
-      <div class="flex gap-8 items-center px-4">
-        <span><i class="fa-solid fa-bolt text-emerald-400 mr-2"></i>Bulk SMS</span>
-        <span>•</span><span>Transactional & OTP SMS</span>
-        <span>•</span><span>Promotional & Flash SMS</span>
-        <span>•</span><span>Unicode Regional SMS</span>
-        <span>•</span><span>WhatsApp Business Cloud API</span>
-        <span>•</span><span>RCS Messaging</span>
-        <span>•</span><span>Voice SMS & IVR</span>
-        <span>•</span><span>Missed Call Services</span>
-        <span>•</span><span>DLT Support & Templates</span>
-        <span>•</span><span>Full-Stack Web Development</span>
-        <span>•</span><span>Android & iOS Apps</span>
-        <span>•</span><span>Custom CRM & ERP Software</span>
-        <span>•</span><span>Performance Marketing & SEO</span>
-      </div>
-    </div>
-  </div>
+def enter_marks():
+    print("\n--- MARKS ENTRY SYSTEM (FA1, FA2, SA1, FA3, FA4, SA2) ---")
+    roll = input("Marks enter karne ke liye Roll Number dalo: ")
 
-  <main id="home" class="page-section active flex-grow">
-    
-    <section class="relative min-h-[540px] sm:min-h-[600px] flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#050b14] via-[#071120] to-[#040810] text-white">
-      <canvas id="networkCanvas"></canvas>
-      <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-emerald-500/15 rounded-full blur-3xl hero-glow pointer-events-none"></div>
+    cursor.execute("SELECT name, class_name FROM students WHERE roll_no = ?", (roll,))
+    student = cursor.fetchone()
 
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-14 sm:py-20 relative z-10 grid md:grid-cols-12 gap-10 items-center">
-        <div class="md:col-span-7 space-y-6">
-          <div class="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs px-3.5 py-1.5 rounded-full font-bold uppercase tracking-wider">
-            <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span> Complete Telecom, Cloud & IT Ecosystem
-          </div>
+    if not student:
+        print("❌ Student Nahi Mila! Pehle Roll Number Add Karein.")
+        return
 
-          <div class="space-y-2">
-            <h2 class="text-xs uppercase tracking-[0.3em] font-extrabold text-slate-400">Enterprise High Delivery Communication</h2>
-            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black leading-none tracking-tight text-white">
-              <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-200 to-white brand-glow">
-                TELECORCEL IT SOLUTIONS
-              </span>
-              <span class="block text-2xl sm:text-4xl text-slate-200 mt-2 font-bold">
-                PVT LTD
-              </span>
-            </h1>
-          </div>
+    print(f"\nStudent Found: {student[0]} | Class: {student[1]}")
+    print("\nExam Type Chuno:")
+    print("1. FA1 (10 Marks Max)")
+    print("2. FA2 (10 Marks Max)")
+    print("3. SA1 (30 Marks Max)")
+    print("4. FA3 (10 Marks Max)")
+    print("5. FA4 (10 Marks Max)")
+    print("6. SA2 (30 Marks Max)")
 
-          <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-xl">
-            Clean High-Throughput Bulk SMS, OTP Routes, RCS & WhatsApp Business API, Custom Software Development, Mobile Apps, aur Performance Marketing. Supporting over 20,000+ businesses with SLA guarantee and sub-second carrier delivery.
-          </p>
-
-          <div class="flex flex-wrap gap-4 pt-2">
-            <button onclick="showPage('services')" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-7 py-3 rounded-lg shadow-xl shadow-emerald-500/25 transition">
-              Explore All Services
-            </button>
-            <button onclick="showPage('pricing')" class="border border-slate-700 bg-slate-900/60 hover:bg-slate-800 text-slate-200 px-7 py-3 rounded-lg font-semibold transition">
-              View Pricing Cards
-            </button>
-          </div>
-        </div>
-
-        <div class="md:col-span-5 grid grid-cols-2 gap-4">
-          <div class="floating-card rounded-xl border border-slate-700/80 bg-slate-900/80 p-2 shadow-2xl backdrop-blur overflow-hidden">
-            <img src="telecorcel8.jpeg" alt="Bulk SMS Service" class="rounded-lg h-36 sm:h-44 w-full object-cover" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=600&auto=format&fit=crop&q=80';" />
-          </div>
-          <div class="floating-card rounded-xl border border-slate-700/80 bg-slate-900/80 p-2 shadow-2xl backdrop-blur overflow-hidden" style="animation-delay: 1.2s;">
-            <img src="telecorcel9.jpeg" alt="Telecorcel Team" class="rounded-lg h-36 sm:h-44 w-full object-cover" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&auto=format&fit=crop&q=80';" />
-          </div>
-          <div class="floating-card rounded-xl border border-slate-700/80 bg-slate-900/80 p-2 shadow-2xl backdrop-blur overflow-hidden" style="animation-delay: 0.6s;">
-            <img src="telecorcel4.jpeg" alt="OTP Route" class="rounded-lg h-36 sm:h-44 w-full object-cover" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&auto=format&fit=crop&q=80';" />
-          </div>
-          <div class="floating-card rounded-xl border border-slate-700/80 bg-slate-900/80 p-2 shadow-2xl backdrop-blur overflow-hidden" style="animation-delay: 1.8s;">
-            <img src="telecorcel11.jpeg" alt="SMS Campaign" class="rounded-lg h-36 sm:h-44 w-full object-cover" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&auto=format&fit=crop&q=80';" />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="py-16 bg-[#060c18] border-t border-slate-800 text-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6">
-        
-        <div class="text-center max-w-3xl mx-auto mb-12">
-          <span class="text-emerald-400 text-xs uppercase tracking-widest font-black">Everything We Deliver</span>
-          <h2 class="text-2xl sm:text-4xl font-extrabold mt-1">Services We Provide</h2>
-          <p class="text-slate-400 text-xs sm:text-sm mt-2">
-            Telecom routing, conversational messaging APIs, custom web & mobile software architecture, aur growth marketing.
-          </p>
-        </div>
-
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          
-          <div class="service-box p-6 rounded-2xl flex flex-col justify-between">
-            <div>
-              <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl mb-4">
-                <i class="fa-solid fa-comment-sms"></i>
-              </div>
-              <h3 class="text-lg font-bold text-white mb-2">1. Bulk SMS & Gateway Routes</h3>
-              <p class="text-xs text-slate-400 leading-relaxed mb-4">
-                Sub-second priority latency with direct carrier interconnects aur real-time DLR analytics.
-              </p>
-              <ul class="text-xs text-slate-300 space-y-1.5 border-t border-slate-800 pt-3">
-                <li>✔ Transactional SMS (OTP, Alerts, Order Updates)</li>
-                <li>✔ Promotional SMS (Mass Offers & Campaigns)</li>
-                <li>✔ OTP Priority Pipe (Sub-3s Banking Latency)</li>
-                <li>✔ Flash SMS, Unicode Hindi & International SMS</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="service-box p-6 rounded-2xl flex flex-col justify-between">
-            <div>
-              <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl mb-4">
-                <i class="fa-brands fa-whatsapp"></i>
-              </div>
-              <h3 class="text-lg font-bold text-white mb-2">2. WhatsApp Business & RCS</h3>
-              <p class="text-xs text-slate-400 leading-relaxed mb-4">
-                Meta Verified Cloud API integration, verified sender ID and automated rich interactive messaging.
-              </p>
-              <ul class="text-xs text-slate-300 space-y-1.5 border-t border-slate-800 pt-3">
-                <li>✔ WhatsApp Cloud API & Verified Green Badge</li>
-                <li>✔ Automated Notifications & Booking Chatbots</li>
-                <li>✔ RCS Messaging with Carousels & Buttons</li>
-                <li>✔ Multi-Agent Shared Customer Support Desk</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="service-box p-6 rounded-2xl flex flex-col justify-between">
-            <div>
-              <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl mb-4">
-                <i class="fa-solid fa-stamp"></i>
-              </div>
-              <h3 class="text-lg font-bold text-white mb-2">3. DLT Registration & Compliance</h3>
-              <p class="text-xs text-slate-400 leading-relaxed mb-4">
-                TRAI-mandated entity onboarding, brand header registration aur instant content template approval.
-              </p>
-              <ul class="text-xs text-slate-300 space-y-1.5 border-t border-slate-800 pt-3">
-                <li>✔ DLT Entity Registration on Jio/Airtel/VI/BSNL</li>
-                <li>✔ 6-Character Sender ID / Header Approvals</li>
-                <li>✔ SMS Content Template Submission & Audit</li>
-                <li>✔ Ongoing Compliance & Consent Management</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="service-box p-6 rounded-2xl flex flex-col justify-between">
-            <div>
-              <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl mb-4">
-                <i class="fa-solid fa-phone-volume"></i>
-              </div>
-              <h3 class="text-lg font-bold text-white mb-2">4. Voice SMS, IVR & Telephony</h3>
-              <p class="text-xs text-slate-400 leading-relaxed mb-4">
-                Automated cloud telephony, pre-recorded voice broadcasting aur dynamic keypad response routing.
-              </p>
-              <ul class="text-xs text-slate-300 space-y-1.5 border-t border-slate-800 pt-3">
-                <li>✔ Voice SMS (OBD) Mass Voice Call Broadcasting</li>
-                <li>✔ Multi-Level Cloud IVR with Keypad Responses</li>
-                <li>✔ Zero-Cost Missed Call Lead Generation</li>
-                <li>✔ Virtual Numbers, Short Codes & Long Codes</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="service-box p-6 rounded-2xl flex flex-col justify-between">
-            <div>
-              <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl mb-4">
-                <i class="fa-solid fa-laptop-code"></i>
-              </div>
-              <h3 class="text-lg font-bold text-white mb-2">5. Web, App & Software Dev</h3>
-              <p class="text-xs text-slate-400 leading-relaxed mb-4">
-                Custom corporate portals, e-commerce, mobile apps aur automated enterprise CRM/ERP suites.
-              </p>
-              <ul class="text-xs text-slate-300 space-y-1.5 border-t border-slate-800 pt-3">
-                <li>✔ Corporate & E-Commerce Website Development</li>
-                <li>✔ Android & iOS Mobile Apps (Flutter / React Native)</li>
-                <li>✔ Custom Business CRM, ERP & GST Billing Software</li>
-                <li>✔ Domain, Cloud Hosting, SSL & 24x7 Maintenance</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="service-box p-6 rounded-2xl flex flex-col justify-between">
-            <div>
-              <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl mb-4">
-                <i class="fa-solid fa-chart-line"></i>
-              </div>
-              <h3 class="text-lg font-bold text-white mb-2">6. Digital Marketing & APIs</h3>
-              <p class="text-xs text-slate-400 leading-relaxed mb-4">
-                High-converting paid advertising, SEO rankings, B2B lead funnels aur developer messaging APIs.
-              </p>
-              <ul class="text-xs text-slate-300 space-y-1.5 border-t border-slate-800 pt-3">
-                <li>✔ Google Ads (PPC) & Performance Max Campaigns</li>
-                <li>✔ Social Media Marketing (Meta / LinkedIn Ads)</li>
-                <li>✔ Technical On-Page & Off-Page SEO Rankings</li>
-                <li>✔ RESTful APIs for SMS, WhatsApp, Email & Voice</li>
-              </ul>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <section class="py-16 bg-[#03070f] border-t border-slate-800 relative overflow-hidden text-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6">
-        <div class="text-center max-w-3xl mx-auto mb-10">
-          <span class="text-emerald-400 text-xs uppercase tracking-widest font-black">Live 3D Customer Footprint</span>
-          <h2 class="text-2xl sm:text-4xl font-extrabold mt-1">Telecorcel Global Network & Client Spread</h2>
-          <p class="text-slate-400 text-xs sm:text-sm mt-2">
-            Noida Sector 62 Headquarters se interconnected global high-speed carrier routes. Drag karke 3D Globe rotate karke live client nodes check karein.
-          </p>
-        </div>
-
-        <div class="grid lg:grid-cols-12 gap-8 items-center bg-slate-900/50 border border-slate-800/90 rounded-2xl p-6 backdrop-blur shadow-2xl">
-          <div class="lg:col-span-7 relative flex items-center justify-center">
-            <div id="globeCanvasContainer" class="w-full h-[420px] flex items-center justify-center relative">
-              <canvas id="globeCanvas"></canvas>
-              <div class="absolute bottom-3 left-4 bg-slate-950/80 border border-slate-800 text-[11px] text-emerald-400 px-3 py-1.5 rounded-full pointer-events-none">
-                <i class="fa-solid fa-arrows-spin mr-1"></i> Drag to rotate globe view
-              </div>
-            </div>
-          </div>
-
-          <div class="lg:col-span-5 space-y-3.5">
-            <div class="p-4 bg-slate-950/80 border border-emerald-500/30 rounded-xl">
-              <div class="flex items-center justify-between">
-                <span class="text-sm font-bold text-white"><i class="fa-solid fa-location-dot text-emerald-400 mr-2"></i>Noida HQ (India Switch)</span>
-                <span class="text-[10px] bg-emerald-500/20 text-emerald-300 font-bold px-2 py-0.5 rounded">Origin Node</span>
-              </div>
-              <p class="text-xs text-slate-400 mt-1">Sector 62, Noida Carrier Switch & Primary NOC Datacenter</p>
-            </div>
-            <div class="p-3 bg-slate-950/60 border border-slate-800 rounded-xl flex justify-between items-center text-xs">
-              <span class="text-slate-300"><i class="fa-solid fa-satellite text-emerald-400 mr-2"></i>Americas (US East / West)</span>
-              <span class="text-emerald-400 font-bold">2,400+ Enterprise Users</span>
-            </div>
-            <div class="p-3 bg-slate-950/60 border border-slate-800 rounded-xl flex justify-between items-center text-xs">
-              <span class="text-slate-300"><i class="fa-solid fa-satellite text-emerald-400 mr-2"></i>Europe & UK</span>
-              <span class="text-emerald-400 font-bold">3,800+ Clients</span>
-            </div>
-            <div class="p-3 bg-slate-950/60 border border-slate-800 rounded-xl flex justify-between items-center text-xs">
-              <span class="text-slate-300"><i class="fa-solid fa-satellite text-emerald-400 mr-2"></i>Middle East (UAE / Saudi)</span>
-              <span class="text-emerald-400 font-bold">4,200+ Retail & Gaming</span>
-            </div>
-            <div class="p-3 bg-slate-950/60 border border-slate-800 rounded-xl flex justify-between items-center text-xs">
-              <span class="text-slate-300"><i class="fa-solid fa-satellite text-emerald-400 mr-2"></i>APAC (Singapore / Australia)</span>
-              <span class="text-emerald-400 font-bold">5,000+ Active Nodes</span>
-            </div>
-            <button onclick="showPage('contact')" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs py-3 rounded-lg uppercase tracking-wider transition">
-              Start Route Onboarding
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="py-14 bg-[#040810] border-t border-slate-800 text-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6">
-        <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8">
-          <div>
-            <span class="text-emerald-400 text-xs uppercase tracking-widest font-black">Official Location Map</span>
-            <h2 class="text-2xl sm:text-3xl font-black mt-1">Visit Telecorcel IT Solutions On Google Maps</h2>
-            <p class="text-xs text-slate-400 mt-1">Block A, Industrial Area, Sector 62, Noida, Uttar Pradesh 201309 (with local presence listings around Sector 44 / Wazidpur in Noida)</p>
-          </div>
-          <a href="https://maps.google.com/?q=Block+A,+Sector+62,+Noida,+Uttar+Pradesh+201309" target="_blank" class="mt-4 sm:mt-0 inline-flex items-center gap-2 text-xs font-bold text-slate-950 bg-emerald-400 hover:bg-emerald-300 px-4 py-2.5 rounded-lg transition">
-            <i class="fa-solid fa-map-location-dot"></i> Open Full Google Maps
-          </a>
-        </div>
-
-        <div class="rounded-2xl overflow-hidden border border-slate-800 shadow-2xl h-80 sm:h-96 w-full">
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14008.260465223035!2d77.36214532695537!3d28.627771749870197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5456ef36d9f%3A0x3b7191b1286136c8!2sSector%2062%2C%20Noida%2C%20Uttar%20Pradesh%20201309!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
-            width="100%" 
-            height="100%" 
-            style="border:0; filter: invert(90%) hue-rotate(180deg);" 
-            allowfullscreen="" 
-            loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <main id="services" class="page-section flex-grow py-16 max-w-7xl mx-auto px-4 sm:px-6 text-white">
-    <div class="text-center max-w-3xl mx-auto mb-12">
-      <span class="text-emerald-400 text-xs uppercase tracking-widest font-black">Full-Stack Capabilities</span>
-      <h2 class="text-3xl sm:text-5xl font-black tracking-tight text-white mt-1">
-        All Capabilities & Technical Solutions
-      </h2>
-      <p class="text-slate-400 text-xs sm:text-sm mt-3">
-        Telecorcel IT Solutions provide karta hai direct carrier connectivity, cutting-edge software architecture aur ROI-driven performance marketing infrastructure.
-      </p>
-    </div>
-
-    <div class="space-y-8">
-      <div class="bg-slate-900/60 border border-slate-800 p-6 sm:p-8 rounded-2xl">
-        <h3 class="text-xl font-bold text-emerald-400 mb-2 flex items-center gap-2">
-          <i class="fa-solid fa-comment-sms"></i> 1. Bulk SMS & Carrier Routes
-        </h3>
-        <p class="text-xs text-slate-400 mb-5">Sub-second latency with 99.98% delivery SLA</p>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
-          <div class="p-4 bg-slate-950/80 border border-slate-800 rounded-xl">
-            <span class="text-white font-bold block mb-1">Transactional SMS</span>
-            <p class="text-slate-400">OTP, critical banking alerts, order updates, booking receipts.</p>
-          </div>
-          <div class="p-4 bg-slate-950/80 border border-slate-800 rounded-xl">
-            <span class="text-white font-bold block mb-1">Promotional SMS</span>
-            <p class="text-slate-400">Mass sales offers, announcements, customer outreach campaigns.</p>
-          </div>
-          <div class="p-4 bg-slate-950/80 border border-slate-800 rounded-xl">
-            <span class="text-white font-bold block mb-1">OTP Priority Pipe</span>
-            <p class="text-slate-400">2-5 seconds delivery route, banking & fintech standard latency.</p>
-          </div>
-          <div class="p-4 bg-slate-950/80 border border-slate-800 rounded-xl">
-            <span class="text-white font-bold block mb-1">Unicode & International</span>
-            <p class="text-slate-400">Hindi/Regional language fonts, Flash SMS aur global coverage.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="bg-slate-900/60 border border-slate-800 p-6 sm:p-8 rounded-2xl">
-        <h3 class="text-xl font-bold text-emerald-400 mb-2 flex items-center gap-2">
-          <i class="fa-brands fa-whatsapp"></i> 2. WhatsApp Business API & RCS
-        </h3>
-        <p class="text-xs text-slate-400 mb-5">Verified messaging channels with interactive rich media</p>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
-          <div class="p-4 bg-slate-950/80 border border-slate-800 rounded-xl">
-            <span class="text-white font-bold block mb-1">Meta Cloud API</span>
-            <p class="text-slate-400">Official verified WhatsApp Cloud API setup aur green tick guidance.</p>
-          </div>
-          <div class="p-4 bg-slate-950/80 border border-slate-800 rounded-xl">
-            <span class="text-white font-bold block mb-1">Customer Notifications</span>
-            <p class="text-slate-400">Automated invoices, shipping status, booking confirmations.</p>
-          </div>
-          <div class="p-4 bg-slate-950/80 border border-slate-800 rounded-xl">
-            <span class="text-white font-bold block mb-1">RCS Messaging</span>
-            <p class="text-slate-400">Interactive verified SMS with carousels, action buttons & videos.</p>
-          </div>
-          <div class="p-4 bg-slate-950/80 border border-slate-800 rounded-xl">
-            <span class="text-white font-bold block mb-1">Multi-Agent Chatbox</span>
-            <p class="text-slate-400">Shared inbox dashboard for customer support teams.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="bg-slate-900/60 border border-slate-800 p-6 sm:p-8 rounded-2xl">
-        <h3 class="text-xl font-bold text-emerald-400 mb-2 flex items-center gap-2">
-          <i class="fa-solid fa-laptop-code"></i> 3. Web & Custom Software Architecture
-        </h3>
-        <p class="text-xs text-slate-400 mb-5">Scalable web applications and enterprise business software</p>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 text-xs">
-          <div class="p-4 bg-slate-950/80 border border-slate-800 rounded-xl">
-            <span class="text-white font-bold block mb-1">Website Development</span>
-            <p class="text-slate-400">Corporate websites, E-commerce, landing pages, CMS portals, SSL & Cloud Hosting.</p>
-          </div>
-          <div class="p-4 bg-slate-950/80 border border-slate-800 rounded-xl">
-            <span class="text-white font-bold block mb-1">Mobile App Development</span>
-            <p class="text-slate-400">Android & iOS apps (Flutter / React Native) with custom admin panels & push alerts.</p>
-          </div>
-          <div class="p-4 bg-slate-950/80 border border-slate-800 rounded-xl">
-            <span class="text-white font-bold block mb-1">ERP, CRM & Billing</span>
-            <p class="text-slate-400">Custom CRM, automated GST billing software, POS, inventory, HRMS & school management suites.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <main id="pricing" class="page-section flex-grow py-14 max-w-7xl mx-auto px-4 sm:px-6 text-white">
-    <div class="text-center mb-12">
-      <span class="text-emerald-400 text-xs uppercase tracking-widest font-black">Transparent Packages</span>
-      <h2 class="text-3xl sm:text-4xl font-black mt-1">Dedicated Pricing Cards</h2>
-      <p class="text-slate-400 text-xs sm:text-sm mt-2">Direct carrier interconnects with flexible volume-based pricing</p>
-    </div>
-
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-      <div class="bg-slate-900/80 border border-slate-800 p-6 rounded-2xl text-center flex flex-col justify-between">
-        <div>
-          <h3 class="font-bold text-base text-slate-100">1. Promotional SMS</h3>
-          <p class="text-[11px] text-slate-400 my-1">Offers, Announcements & Outreach</p>
-          <div class="text-2xl font-black text-emerald-400 my-3">Bulk Tier Rates</div>
-          <ul class="text-xs text-slate-400 space-y-1.5 text-left mb-6">
-            <li>• High-volume campaign scheduling</li>
-            <li>• Smart DND filtration</li>
-            <li>• Real-time delivery reports (DLR)</li>
-          </ul>
-        </div>
-        <button onclick="showPage('contact')" class="w-full bg-slate-800 hover:bg-slate-700 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition">Inquire Plan</button>
-      </div>
-
-      <div class="bg-slate-900/90 border-2 border-emerald-500 p-6 rounded-2xl text-center flex flex-col justify-between relative shadow-xl shadow-emerald-500/10">
-        <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-500 text-slate-950 font-black text-[10px] uppercase px-2.5 py-0.5 rounded-full">Top Route</span>
-        <div>
-          <h3 class="font-bold text-base text-slate-100 mt-1">2. Transactional & OTP</h3>
-          <p class="text-[11px] text-slate-400 my-1">Sub-Second Priority Latency</p>
-          <div class="text-2xl font-black text-emerald-400 my-3">2-5 Sec Delivery</div>
-          <ul class="text-xs text-slate-400 space-y-1.5 text-left mb-6">
-            <li>• Dedicated high-priority carrier pipe</li>
-            <li>• DND & Non-DND 24x7 open delivery</li>
-            <li>• Banking & Fintech SLA grade</li>
-          </ul>
-        </div>
-        <button onclick="showPage('contact')" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 py-2.5 rounded-lg text-xs font-black uppercase tracking-wider transition">Inquire Plan</button>
-      </div>
-
-      <div class="bg-slate-900/80 border border-slate-800 p-6 rounded-2xl text-center flex flex-col justify-between">
-        <div>
-          <h3 class="font-bold text-base text-slate-100">3. WhatsApp & Voice IVR</h3>
-          <p class="text-[11px] text-slate-400 my-1">Official Meta Business API</p>
-          <div class="text-2xl font-black text-emerald-400 my-3">Custom Usage</div>
-          <ul class="text-xs text-slate-400 space-y-1.5 text-left mb-6">
-            <li>• Automated chatbot triggers</li>
-            <li>• Per 30-sec pulse voice broadcasting</li>
-            <li>• Multi-agent inbox support</li>
-          </ul>
-        </div>
-        <button onclick="showPage('contact')" class="w-full bg-slate-800 hover:bg-slate-700 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition">Inquire Plan</button>
-      </div>
-
-      <div class="bg-slate-900/80 border border-slate-800 p-6 rounded-2xl text-center flex flex-col justify-between">
-        <div>
-          <h3 class="font-bold text-base text-slate-100">4. Web, App & CRM Dev</h3>
-          <p class="text-[11px] text-slate-400 my-1">Custom Built Architectures</p>
-          <div class="text-2xl font-black text-emerald-400 my-3">Milestone Scope</div>
-          <ul class="text-xs text-slate-400 space-y-1.5 text-left mb-6">
-            <li>• 100% source code ownership</li>
-            <li>• Free maintenance & support period</li>
-            <li>• Cloud server deployment & SSL</li>
-          </ul>
-        </div>
-        <button onclick="showPage('contact')" class="w-full bg-slate-800 hover:bg-slate-700 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition">Inquire Plan</button>
-      </div>
-    </div>
-  </main>
-
-  <main id="about" class="page-section flex-grow py-14 max-w-7xl mx-auto px-4 sm:px-6 text-white">
-    <div class="grid md:grid-cols-2 gap-10 items-center">
-      <div>
-        <span class="text-emerald-400 text-xs uppercase tracking-wider font-bold">About Telecorcel</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold mt-1 mb-4">Pioneering High-Quality Telecom & Enterprise IT</h2>
-        <p class="text-slate-300 text-sm leading-relaxed mb-6">
-          Telecorcel IT Solutions Pvt Ltd provides high-throughput telecom routing, automated messaging gateways, and bespoke web/software solutions. Operating since 2013, we serve over 20,000+ satisfied clients across multiple verticals.
-        </p>
-
-        <div class="grid sm:grid-cols-2 gap-4 mb-6">
-          <div class="p-4 bg-slate-900/80 border border-slate-800 rounded-xl">
-            <span class="text-[11px] text-emerald-400 uppercase font-bold block">Chief Executive Officer</span>
-            <span class="text-base font-bold text-slate-100">Satyam Sharma</span>
-          </div>
-          <div class="p-4 bg-slate-900/80 border border-slate-800 rounded-xl">
-            <span class="text-[11px] text-emerald-400 uppercase font-bold block">Sales Manager</span>
-            <span class="text-base font-bold text-slate-100">Shivam Sharma</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="border border-slate-800 rounded-2xl overflow-hidden p-2 bg-slate-900/60 shadow-2xl">
-        <img src="telecorcel9.jpeg" alt="Telecorcel Team at Work" class="rounded-xl w-full object-cover" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=700&auto=format&fit=crop&q=80';" />
-      </div>
-    </div>
-  </main>
-
-  <main id="contact" class="page-section flex-grow py-14 max-w-7xl mx-auto px-4 sm:px-6 text-white">
-    <div class="text-center mb-12">
-      <span class="text-emerald-400 text-xs uppercase tracking-widest font-black">Direct Inquiry & NOC Desk</span>
-      <h2 class="text-3xl sm:text-4xl font-black mt-1">Get In Touch With Telecorcel</h2>
-      <p class="text-slate-400 text-sm mt-2">Sector 62, Noida Corporate Facility & Carrier Operations</p>
-    </div>
-
-    <div class="grid md:grid-cols-2 gap-10">
-      <div class="space-y-6">
-        <div class="bg-slate-900/80 border border-slate-800 p-6 rounded-2xl">
-          <h3 class="text-base font-bold text-white mb-4 border-b border-slate-800 pb-2">Registered Corporate Facility</h3>
-          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
-            <strong>Headquarters:</strong> Block A, Industrial Area, Sector 62, Noida, Uttar Pradesh 201309.<br/>
-            <span class="text-xs text-slate-400">(Additional local presence listings around Sector 44 / Wazidpur in Noida)</span>
-          </p>
-          <div class="space-y-3 text-xs sm:text-sm text-slate-300">
-            <p><i class="fa-solid fa-phone text-emerald-400 mr-2"></i> +91 9012574505</p>
-            <p><i class="fa-solid fa-phone text-emerald-400 mr-2"></i> +91 7678519164</p>
-            <p><i class="fa-solid fa-envelope text-emerald-400 mr-2"></i> telecorcelitsolutionshelp@gmail.com</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="bg-slate-900/80 border border-slate-800 p-6 rounded-2xl">
-        <h3 class="text-base font-bold text-white mb-4">Request Live Route Pipeline / Pricing</h3>
-        <form onsubmit="event.preventDefault(); alert('Request submit ho gayi hai! Team turant connect karegi.');" class="space-y-4 text-xs sm:text-sm">
-          <div>
-            <label class="block text-slate-300 mb-1">Your Name / Company Name</label>
-            <input type="text" required class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-white focus:border-emerald-500 outline-none" placeholder="Enter full name" />
-          </div>
-          <div>
-            <label class="block text-slate-300 mb-1">Phone Number</label>
-            <input type="tel" required class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-white focus:border-emerald-500 outline-none" placeholder="+91 XXXXXXXXXX" />
-          </div>
-          <div>
-            <label class="block text-slate-300 mb-1">Service Required</label>
-            <select class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-white focus:border-emerald-500 outline-none">
-              <option>Bulk SMS (Transactional / OTP / Promotional)</option>
-              <option>WhatsApp API & RCS Messaging</option>
-              <option>Voice SMS, IVR & Missed Call</option>
-              <option>Website & Mobile App Development</option>
-              <option>Enterprise CRM, ERP & Billing Software</option>
-              <option>DLT Registration & Template Support</option>
-            </select>
-          </div>
-          <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3 rounded-lg uppercase tracking-wider text-xs transition">Submit Inquiry</button>
-        </form>
-      </div>
-    </div>
-  </main>
-
-  <footer class="bg-[#02050a] text-slate-400 py-8 border-t border-slate-900 text-xs mt-auto">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
-      <div>
-        <span class="text-white font-extrabold tracking-wider">TELECORCEL IT SOLUTIONS PVT LTD</span>
-        <p class="text-[11px] text-slate-500 mt-1">Sector 62, Noida, UP 201309 | CEO: Satyam Sharma | Sales Manager: Shivam Sharma</p>
-      </div>
-      <p class="text-[11px] text-slate-500">© 2026 Telecorcel IT Solutions Pvt Ltd. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <script>
-    function showPage(pageId) {
-      try {
-        const sections = document.querySelectorAll('.page-section');
-        sections.forEach(sec => sec.classList.remove('active'));
-        const target = document.getElementById(pageId);
-        if (target) {
-          target.classList.add('active');
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-      } catch (e) {
-        console.error("Navigation error:", e);
-      }
+    exam_opt = input("Option No. Dalo (1-6): ")
+    exam_map = {
+        "1": "fa1",
+        "2": "fa2",
+        "3": "sa1",
+        "4": "fa3",
+        "5": "fa4",
+        "6": "sa2",
     }
 
-    // Hero Canvas Network Animation (Safe Run)
-    try {
-      const canvas = document.getElementById('networkCanvas');
-      if (canvas) {
-        const ctx = canvas.getContext('2d');
-        let width = canvas.width = canvas.parentElement.offsetWidth || window.innerWidth;
-        let height = canvas.height = canvas.parentElement.offsetHeight || 600;
-        let particles = [];
+    if exam_opt not in exam_map:
+        print("❌ Galat option!")
+        return
 
-        window.addEventListener('resize', () => {
-          if (canvas.parentElement) {
-            width = canvas.width = canvas.parentElement.offsetWidth;
-            height = canvas.height = canvas.parentElement.offsetHeight;
-          }
-        });
+    exam_type = exam_map[exam_opt]
 
-        class Particle {
-          constructor() {
-            this.x = Math.random() * width;
-            this.y = Math.random() * height;
-            this.vx = (Math.random() - 0.5) * 0.8;
-            this.vy = (Math.random() - 0.5) * 0.8;
-            this.radius = Math.random() * 2 + 1;
-          }
-          update() {
-            this.x += this.vx;
-            this.y += this.vy;
-            if (this.x < 0 || this.x > width) this.vx *= -1;
-            if (this.y < 0 || this.y > height) this.vy *= -1;
-          }
-          draw() {
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(52, 211, 153, 0.6)';
-            ctx.fill();
-          }
-        }
+    print(f"\n--- Entering Marks for Exam: {exam_type.upper()} ---")
+    m_math = float(input("Mathematics Marks: "))
+    m_sci = float(input("Science Marks: "))
+    m_eng = float(input("English Marks: "))
+    m_hin = float(input("Hindi Marks: "))
 
-        const count = Math.min(width > 768 ? 50 : 20, 60);
-        for (let i = 0; i < count; i++) particles.push(new Particle());
+    query = f"""
+        UPDATE students 
+        SET maths_{exam_type} = ?, sci_{exam_type} = ?, eng_{exam_type} = ?, hin_{exam_type} = ?
+        WHERE roll_no = ?
+    """
+    cursor.execute(query, (m_math, m_sci, m_eng, m_hin, roll))
+    conn.commit()
+    print(f"✅ {exam_type.upper()} ke Marks Safaltapoorvak Save Ho Gaye!")
 
-        function animateNet() {
-          ctx.clearRect(0, 0, width, height);
-          for (let i = 0; i < particles.length; i++) {
-            particles[i].update();
-            particles[i].draw();
-            for (let j = i + 1; j < particles.length; j++) {
-              const dx = particles[i].x - particles[j].x;
-              const dy = particles[i].y - particles[j].y;
-              const dist = Math.sqrt(dx * dx + dy * dy);
-              if (dist < 120) {
-                ctx.beginPath();
-                ctx.moveTo(particles[i].x, particles[i].y);
-                ctx.lineTo(particles[j].x, particles[j].y);
-                ctx.strokeStyle = `rgba(16, 185, 129, ${0.2 * (1 - dist / 120)})`;
-                ctx.lineWidth = 0.8;
-                ctx.stroke();
-              }
-            }
-          }
-          requestAnimationFrame(animateNet);
-        }
-        animateNet();
-      }
-    } catch (err) {
-      console.warn("Canvas animation skipped:", err);
-    }
 
-    // Three.js 3D Globe Animation (Safe Run)
-    try {
-      if (typeof THREE !== 'undefined') {
-        const container = document.getElementById('globeCanvasContainer');
-        const canvas = document.getElementById('globeCanvas');
-        if (container && canvas) {
-          const scene = new THREE.Scene();
-          const camera = new THREE.PerspectiveCamera(45, container.offsetWidth / container.offsetHeight, 0.1, 1000);
-          camera.position.z = 210;
+def generate_marksheet():
+    print("\n--- GENERATE PROFESSIONAL MARKSHEET ---")
+    roll = input("Marksheet ke liye Roll Number Dalo: ")
 
-          const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
-          renderer.setSize(container.offsetWidth, container.offsetHeight);
-          renderer.setPixelRatio(window.devicePixelRatio || 1);
+    cursor.execute("SELECT * FROM students WHERE roll_no = ?", (roll,))
+    row = cursor.fetchone()
 
-          const globeRadius = 68;
-          const globeGroup = new THREE.Group();
-          scene.add(globeGroup);
+    if not row:
+        print("❌ Is Roll Number ka student nahi mila!")
+        return
 
-          const sphereGeo = new THREE.SphereGeometry(globeRadius, 32, 32);
-          const sphereMat = new THREE.MeshBasicMaterial({ color: 0x064e3b, wireframe: true, transparent: true, opacity: 0.2 });
-          globeGroup.add(new THREE.Mesh(sphereGeo, sphereMat));
+    # Data Extracting
+    roll_no, name, class_name = row[0], row[1], row[2]
+    m_m = row[3:9]  # Maths: FA1, FA2, SA1, FA3, FA4, SA2
+    m_s = row[9:15]  # Science
+    m_e = row[15:21]  # English
+    m_h = row[21:27]  # Hindi
 
-          const innerGeo = new THREE.SphereGeometry(globeRadius - 0.8, 28, 28);
-          const innerMat = new THREE.MeshBasicMaterial({ color: 0x02161e, transparent: true, opacity: 0.8 });
-          globeGroup.add(new THREE.Mesh(innerGeo, innerMat));
+    # Totals Calculation
+    math_tot = sum(m_m)
+    sci_tot = sum(m_s)
+    eng_tot = sum(m_e)
+    hin_tot = sum(m_h)
 
-          function latLonToVector3(lat, lon, radius) {
-            const phi = (90 - lat) * (Math.PI / 180);
-            const theta = (lon + 180) * (Math.PI / 180);
-            return new THREE.Vector3(
-              -(radius * Math.sin(phi) * Math.cos(theta)),
-              radius * Math.cos(phi),
-              radius * Math.sin(phi) * Math.sin(theta)
-            );
-          }
+    grand_total = math_tot + sci_tot + eng_tot + hin_tot
+    percentage = (grand_total / 400) * 100
 
-          const hubs = [
-            { lat: 28.62, lon: 77.36 }, // Noida
-            { lat: 40.71, lon: -74.00 }, // US
-            { lat: 51.50, lon: -0.12 }, // UK
-            { lat: 25.20, lon: 55.27 }, // UAE
-            { lat: 1.35, lon: 103.81 }, // Singapore
-            { lat: -33.86, lon: 151.20 } // Sydney
-          ];
+    if percentage >= 75:
+        grade = "A+ (Distinction)"
+    elif percentage >= 60:
+        grade = "A (First Division)"
+    elif percentage >= 50:
+        grade = "B (Second Division)"
+    elif percentage >= 33:
+        grade = "C (Third Division)"
+    else:
+        grade = "F (Needs Improvement)"
 
-          hubs.forEach((h, idx) => {
-            const pos = latLonToVector3(h.lat, h.lon, globeRadius + 0.5);
-            const marker = new THREE.Mesh(
-              new THREE.SphereGeometry(idx === 0 ? 2.5 : 1.6, 16, 16),
-              new THREE.MeshBasicMaterial({ color: idx === 0 ? 0x10b981 : 0x34d399 })
-            );
-            marker.position.copy(pos);
-            globeGroup.add(marker);
-          });
+    # PRINT MARKSHEET FORMAT
+    print("\n" + "=" * 78)
+    print("                    J.S. VIDYA NIKETAN                    ".center(78))
+    print(
+        "    Radha Krishna Maholla, Aliganj, Etah (U.P.) - 207247    ".center(
+            78
+        )
+    )
+    print("                   ANNUAL PERFORMANCE REPORT CARD                 ")
+    print("=" * 78)
+    print(f" Student Name : {name:<30} Roll No. : {roll_no}")
+    print(f" Class        : {class_name:<30} Session  : 2025-2026")
+    print("-" * 78)
+    print(
+        f"{'SUBJECT':<15} | {'FA1':<4} | {'FA2':<4} | {'SA1':<4} | {'FA3':<4} | {'FA4':<4} | {'SA2':<4} | {'TOTAL (100)':<11}"
+    )
+    print("-" * 78)
 
-          let isDragging = false;
-          let prevPos = { x: 0, y: 0 };
-          canvas.addEventListener('mousedown', () => isDragging = true);
-          window.addEventListener('mouseup', () => isDragging = false);
-          canvas.addEventListener('mousemove', (e) => {
-            if (isDragging) {
-              globeGroup.rotation.y += (e.clientX - prevPos.x) * 0.006;
-              globeGroup.rotation.x += (e.clientY - prevPos.y) * 0.006;
-            }
-            prevPos = { x: e.clientX, y: e.clientY };
-          });
+    print(
+        f"{'Mathematics':<15} | {m_m[0]:<4} | {m_m[1]:<4} | {m_m[2]:<4} | {m_m[3]:<4} | {m_m[4]:<4} | {m_m[5]:<4} | {math_tot:<11.1f}"
+    )
+    print(
+        f"{'Science':<15} | {m_s[0]:<4} | {m_s[1]:<4} | {m_s[2]:<4} | {m_s[3]:<4} | {m_s[4]:<4} | {m_s[5]:<4} | {sci_tot:<11.1f}"
+    )
+    print(
+        f"{'English':<15} | {m_e[0]:<4} | {m_e[1]:<4} | {m_e[2]:<4} | {m_e[3]:<4} | {m_e[4]:<4} | {m_e[5]:<4} | {eng_tot:<11.1f}"
+    )
+    print(
+        f"{'Hindi':<15} | {m_h[0]:<4} | {m_h[1]:<4} | {m_h[2]:<4} | {m_h[3]:<4} | {m_h[4]:<4} | {m_h[5]:<4} | {hin_tot:<11.1f}"
+    )
 
-          function renderGlobe() {
-            requestAnimationFrame(renderGlobe);
-            if (!isDragging) globeGroup.rotation.y += 0.003;
-            renderer.render(scene, camera);
-          }
-          renderGlobe();
-        }
-      }
-    } catch (err) {
-      console.warn("Globe animation skipped:", err);
-    }
-  </script>
-</body>
-</html>
+    print("-" * 78)
+    print(
+        f" GRAND TOTAL : {grand_total:.1f} / 400 | PERCENTAGE : {percentage:.2f}% | GRADE : {grade}"
+    )
+    print("=" * 78)
+    print(" Result Status : PASSED" if percentage >= 33 else " Result Status : FAILED")
+    print("\n Sign (Class Teacher)                         Sign (Principal)")
+    print("=" * 78 + "\n")
+
+
+# --- MAIN MENU LOOP ---
+def main():
+    while True:
+        print("\n========================================================")
+        print("    J.S. VIDYA NIKETAN - SCHOOL MANAGEMENT SYSTEM       ")
+        print("========================================================")
+        print("1. Add New Student")
+        print("2. Enter Subject Marks (FA1, FA2, SA1, FA3, FA4, SA2)")
+        print("3. Search & Generate Marksheet")
+        print("4. Exit Program")
+
+        choice = input("\nSelect Option (1-4): ")
+
+        if choice == "1":
+            add_student()
+        elif choice == "2":
+            enter_marks()
+        elif choice == "3":
+            generate_marksheet()
+        elif choice == "4":
+            print(
+                "\nSystem successfully closed. Data has been safely stored in Database!"
+            )
+            conn.close()
+            break
+        else:
+            print("❌ Invalid Option! Sahi option chunein.")
+
+
+if __name__ == "__main__":
+    main()
