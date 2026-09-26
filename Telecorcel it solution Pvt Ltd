@@ -11,15 +11,14 @@
     
     <style>
         :root {
-            --primary-navy: #0F2027;
-            --secondary-navy: #203A43;
-            --accent-gold: #D4AF37;
+            --primary-navy: #0B1D3A;
+            --accent-gold: #C5A059;
             --light-bg: #F8F9FA;
         }
 
         body { 
-            font-family: 'Segoe UI', Arial, sans-serif; 
-            background-color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #f4f6f9;
             color: #333;
         }
 
@@ -28,122 +27,59 @@
             background-color: var(--primary-navy); 
             color: #fff; 
             padding: 8px 0; 
-            font-size: 0.9rem; 
+            font-size: 0.88rem; 
             border-bottom: 2px solid var(--accent-gold); 
         }
 
-        /* Main Branding Header */
-        .header-section { 
-            padding: 20px 0; 
-            background: #fff; 
+        /* Header & Logo */
+        .header-section { padding: 15px 0; background: #fff; }
+        .logo-circle {
+            width: 95px; height: 95px; border-radius: 50%;
+            background-color: #0A192F; border: 3px double var(--accent-gold);
+            display: flex; align-items: center; justify-content: center;
+            flex-direction: column; color: var(--accent-gold); margin: auto;
         }
+        .logo-title { font-size: 20px; font-weight: 900; color: #fff; margin: 0; line-height: 1; }
 
-        /* Logo Design matching uploaded image */
-        .logo-container {
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
-            background-color: #0A192F;
-            border: 4px double var(--accent-gold);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            color: var(--accent-gold);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            margin: auto;
-        }
+        .school-title { color: var(--primary-navy); font-weight: 900; font-size: 2.1rem; margin-bottom: 0; }
+        .school-sub { color: var(--accent-gold); font-weight: 700; font-size: 1.1rem; }
 
-        .logo-inner-ring {
-            width: 95px;
-            height: 95px;
-            border-radius: 50%;
-            border: 1px solid var(--accent-gold);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            text-align: center;
-            padding: 2px;
-        }
+        /* Navbar */
+        .navbar-custom { background-color: var(--primary-navy); border-top: 1px solid var(--accent-gold); }
+        .navbar-custom .nav-link { color: #fff !important; font-weight: 600; text-transform: uppercase; padding: 12px 16px !important; font-size: 0.9rem; }
+        .navbar-custom .nav-link:hover { background-color: var(--accent-gold); color: #000 !important; }
 
-        .logo-text-top { font-size: 7px; font-weight: bold; letter-spacing: 0.5px; text-transform: uppercase; }
-        .logo-main-title { font-size: 22px; font-weight: 900; line-height: 1; margin: 2px 0; color: #fff; font-family: 'Times New Roman', serif; }
-        .logo-icon { font-size: 14px; margin-bottom: 2px; }
-        .logo-text-bottom { font-size: 6px; font-weight: bold; letter-spacing: 0.5px; }
-
-        .school-title { 
-            color: var(--primary-navy); 
-            font-weight: 900; 
-            font-size: 2.3rem; 
-            letter-spacing: 1px; 
-            margin-bottom: 2px; 
-        }
-        .school-sub { 
-            color: var(--accent-gold); 
-            font-weight: 700; 
-            font-size: 1.2rem; 
-        }
-
-        /* Navigation Bar */
-        .navbar-custom { 
-            background-color: var(--primary-navy); 
-            border-top: 1px solid var(--accent-gold); 
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        .navbar-custom .nav-link { 
-            color: #fff !important; 
-            font-weight: 600; 
-            text-transform: uppercase; 
-            padding: 12px 18px !important; 
-            font-size: 0.95rem; 
-        }
-        .navbar-custom .nav-link:hover { 
-            background-color: var(--accent-gold); 
-            color: #000 !important; 
-        }
-
-        /* Ticker Notice */
-        .ticker-wrap { 
-            background: #f1f3f5; 
-            border-bottom: 1px solid #ddd; 
-            padding: 8px 0; 
-            font-weight: 600; 
-        }
-
-        /* Hero Banner */
+        /* Hero & Sections */
         .hero-banner {
-            background: linear-gradient(rgba(15, 32, 39, 0.8), rgba(15, 32, 39, 0.8)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1200') center/cover;
-            color: #fff;
-            padding: 110px 0;
-            text-align: center;
+            background: linear-gradient(rgba(11, 29, 58, 0.85), rgba(11, 29, 58, 0.85)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1200') center/cover;
+            color: #fff; padding: 80px 0; text-align: center;
         }
 
-        /* Cards */
-        .info-card { 
-            border: none; 
-            border-top: 4px solid var(--primary-navy); 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08); 
-            transition: transform 0.3s; 
-            border-radius: 8px;
-        }
-        .info-card:hover { transform: translateY(-5px); }
+        /* Cards & Admin Panel */
+        .info-card { border: none; border-top: 4px solid var(--primary-navy); box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+        .manager-img { width: 140px; height: 140px; object-fit: cover; border-radius: 50%; border: 3px solid var(--accent-gold); }
+        
+        .admin-section { display: none; background: #fff; padding: 25px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .admin-header { background: var(--primary-navy); color: #fff; padding: 15px; border-radius: 8px; border-bottom: 3px solid var(--accent-gold); }
 
-        /* Footer */
-        footer { 
-            background-color: var(--primary-navy); 
-            color: #fff; 
-            border-top: 4px solid var(--accent-gold); 
+        /* Print Marksheet Styling */
+        @media print {
+            body * { visibility: hidden; }
+            #printableMarksheet, #printableMarksheet * { visibility: visible; }
+            #printableMarksheet { position: absolute; left: 0; top: 0; width: 100%; border: 2px solid #000; padding: 20px; }
         }
-        .footer-bottom { 
-            background-color: #081217; 
-            padding: 15px 0; 
+
+        .marksheet-box {
+            border: 4px double var(--primary-navy);
+            padding: 25px;
+            background: #fff;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
         }
     </style>
 </head>
 <body>
 
-    <!-- TOP HEADER BAR -->
+    <!-- TOP BAR -->
     <div class="top-bar">
         <div class="container d-flex justify-content-between align-items-center flex-wrap">
             <div>
@@ -152,36 +88,33 @@
             </div>
             <div>
                 <span>Manager: <strong>Vishnu Kant</strong></span>
-                <a href="#admission" class="btn btn-sm btn-warning ms-3 fw-bold text-dark">Admissions Open</a>
+                <button class="btn btn-sm btn-outline-warning ms-3 text-white fw-bold" data-bs-toggle="modal" data-bs-target="#loginModal"><i class="fa-solid fa-lock me-1"></i> Admin Login</button>
             </div>
         </div>
     </div>
 
-    <!-- MAIN BRANDING HEADER -->
+    <!-- MAIN HEADER -->
     <header class="header-section">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-md-2 text-center text-md-start mb-3 mb-md-0">
-                    <!-- Pure CSS/HTML Logo matching image -->
-                    <div class="logo-container">
-                        <div class="logo-inner-ring">
-                            <span class="logo-text-top">RBS INTER COLLEGE</span>
-                            <span class="logo-main-title">RBS</span>
-                            <i class="fa-solid fa-book-open logo-icon"></i>
-                            <span class="logo-text-bottom">BITHARA ETAH</span>
-                        </div>
+                <div class="col-md-2 text-center text-md-start mb-2 mb-md-0">
+                    <div class="logo-circle">
+                        <small style="font-size:7px;">RBS INTER COLLEGE</small>
+                        <span class="logo-title">RBS</span>
+                        <i class="fa-solid fa-book-open" style="font-size:12px;"></i>
+                        <small style="font-size:6px;">BITHARA ETAH</small>
                     </div>
                 </div>
                 <div class="col-md-10 text-center text-md-start">
                     <h1 class="school-title">RBS INTER COLLEGE</h1>
                     <div class="school-sub">BITHARA, ALIGANJ, ETAH (U.P.) - 207247</div>
-                    <small class="text-muted"><i class="fa-solid fa-graduation-cap text-warning me-1"></i> Recognized Education | NC to Class 12th</small>
+                    <small class="text-muted"><i class="fa-solid fa-graduation-cap text-warning"></i> Recognized & Affiliated Education | Class 1st to 12th</small>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- NAVIGATION MENU -->
+    <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
         <div class="container">
             <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -190,166 +123,466 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">About College</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#academics">Academics (NC-12th)</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#manager">Manager's Message</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#admission">Admission Form</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#academics">Academics (1-12)</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#admission">Online Admission</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#manager">Manager Profile</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact Us</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- ANNOUNCEMENT TICKER -->
-    <div class="ticker-wrap">
-        <div class="container d-flex align-items-center">
-            <span class="badge bg-danger me-3 fs-6"><i class="fa-solid fa-bell"></i> NOTICE:</span>
-            <marquee behavior="scroll" direction="left" scrollamount="6">
-                ✨ New Admissions are OPEN for Session 2026-27 from Nursery (NC) to Class 12th! Visit campus for registration details.
-            </marquee>
+    <!-- MAIN PUBLIC CONTENT -->
+    <div id="publicContent">
+        <!-- HERO BANNER -->
+        <div class="hero-banner">
+            <div class="container">
+                <h1 class="display-4 fw-bold">Welcome to RBS Inter College</h1>
+                <p class="lead text-warning fw-semibold">Quality Education for Every Student from Class 1st to 12th</p>
+                <a href="#admission" class="btn btn-lg btn-warning mt-3 fw-bold"><i class="fa-solid fa-paper-plane me-2"></i> Fill Admission Form</a>
+            </div>
         </div>
+
+        <!-- ACADEMICS SECTION -->
+        <section class="py-5" id="academics">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold" style="color: var(--primary-navy);">OUR ACADEMICS (CLASS 1st TO 12th)</h2>
+                    <div style="height:3px; width:70px; background:var(--accent-gold); margin:auto;"></div>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="card info-card p-4 text-center h-100">
+                            <i class="fa-solid fa-book-open fs-1 text-warning mb-3"></i>
+                            <h4 class="fw-bold">Primary Wing (Class 1st - 5th)</h4>
+                            <p class="text-muted">Strong foundation building, activity learning, and basic concepts.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card info-card p-4 text-center h-100">
+                            <i class="fa-solid fa-layer-group fs-1 text-warning mb-3"></i>
+                            <h4 class="fw-bold">Middle Wing (Class 6th - 8th)</h4>
+                            <p class="text-muted">Focus on discipline, moral values, and skill improvement.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card info-card p-4 text-center h-100">
+                            <i class="fa-solid fa-user-graduate fs-1 text-warning mb-3"></i>
+                            <h4 class="fw-bold">Secondary & Senior (Class 9th - 12th)</h4>
+                            <p class="text-muted">Comprehensive preparation for board examinations with expert faculty.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ONLINE ADMISSION FORM -->
+        <section class="py-5 bg-light" id="admission">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="card shadow-sm p-4 border-0">
+                            <h3 class="fw-bold text-center mb-3" style="color: var(--primary-navy);">Online Admission Registration</h3>
+                            <p class="text-center text-muted mb-4">Class 1st se Class 12th tak ke liye admission form bharein</p>
+                            
+                            <form id="publicAdmissionForm">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold">Student Name</label>
+                                        <input type="text" id="sName" class="form-control" required placeholder="Full Name">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold">Father's Name</label>
+                                        <input type="text" id="sFather" class="form-control" required placeholder="Father Name">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold">Select Class</label>
+                                        <select id="sClass" class="form-select" required>
+                                            <option value="">-- Choose Class --</option>
+                                            <option>Class 1st</option><option>Class 2nd</option><option>Class 3rd</option>
+                                            <option>Class 4th</option><option>Class 5th</option><option>Class 6th</option>
+                                            <option>Class 7th</option><option>Class 8th</option><option>Class 9th</option>
+                                            <option>Class 10th</option><option>Class 11th</option><option>Class 12th</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold">Mobile Number</label>
+                                        <input type="tel" id="sPhone" class="form-control" required placeholder="Mobile No.">
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label fw-bold">Address</label>
+                                        <textarea id="sAddress" class="form-control" rows="2" placeholder="Village / Area / Post"></textarea>
+                                    </div>
+                                    <div class="col-12 text-center mt-4">
+                                        <button type="submit" class="btn btn-warning fw-bold px-5 py-2"><i class="fa-solid fa-check-circle me-2"></i> Submit Application</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MANAGER PROFILE -->
+        <section class="py-5" id="manager">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-4 text-center mb-4 mb-md-0">
+                        <div class="p-3 bg-white shadow-sm rounded border">
+                            <!-- Manager Image -->
+                            <img src="https://i.ibb.co/L519p4f/manager-photo.jpg" alt="Manager Vishnu Kant" class="manager-img mb-3" onerror="this.src='https://via.placeholder.com/140'">
+                            <h4 class="fw-bold mb-0" style="color: var(--primary-navy);">Vishnu Kant</h4>
+                            <p class="text-warning fw-bold">Manager, RBS Inter College</p>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <h3 class="fw-bold mb-3" style="color: var(--primary-navy);">Manager's Message</h3>
+                        <p class="lead">"Welcome to RBS Inter College. Our commitment is to provide students of Bithara, Aliganj with superior educational opportunities. From Class 1st to 12th, we focus on developing knowledge, character, and discipline."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
-    <!-- HERO BANNER -->
-    <div class="hero-banner">
-        <div class="container">
-            <h1 class="display-4 fw-bold">Welcome to RBS Inter College</h1>
-            <p class="lead text-warning fw-semibold fs-4">Quality Education for Every Child from Nursery to Class 12th</p>
-            <a href="#admission" class="btn btn-lg btn-warning mt-3 fw-bold px-4 py-2"><i class="fa-solid fa-paper-plane me-2"></i> Apply For Admission</a>
-        </div>
-    </div>
-
-    <!-- ACADEMIC WINGS -->
-    <section class="py-5" id="academics">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="fw-bold" style="color: var(--primary-navy);">OUR ACADEMIC SECTIONS</h2>
-                <div style="height:3px; width:80px; background:var(--accent-gold); margin:auto;"></div>
+    <!-- ADMIN DASHBOARD PANEL (HIDDEN BY DEFAULT) -->
+    <div class="container my-5">
+        <div id="adminPanel" class="admin-section">
+            <div class="admin-header d-flex justify-content-between align-items-center flex-wrap mb-4">
+                <div class="d-flex align-items-center">
+                    <!-- Manager Photo inside Admin Panel -->
+                    <img src="https://i.ibb.co/L519p4f/manager-photo.jpg" alt="Manager" class="rounded-circle border border-2 border-warning me-3" style="width: 55px; height: 55px; object-fit: cover;" onerror="this.src='https://via.placeholder.com/55'">
+                    <div>
+                        <h4 class="mb-0 text-warning fw-bold">RBS ADMIN PORTAL</h4>
+                        <small>Logged in as: <strong>Vishnu Kant (Manager)</strong></small>
+                    </div>
+                </div>
+                <button class="btn btn-sm btn-danger fw-bold" onclick="logoutAdmin()"><i class="fa-solid fa-right-from-bracket me-1"></i> Logout</button>
             </div>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card info-card p-4 text-center h-100">
-                        <i class="fa-solid fa-child fs-1 text-warning mb-3"></i>
-                        <h4 class="fw-bold">Pre-Primary (NC to KG)</h4>
-                        <p class="text-muted">Activity-based learning, foundational education, and care in a safe environment.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card info-card p-4 text-center h-100">
-                        <i class="fa-solid fa-book-open fs-1 text-warning mb-3"></i>
-                        <h4 class="fw-bold">Primary & Middle (1st to 8th)</h4>
-                        <p class="text-muted">Focus on core conceptual learning, moral values, discipline, and skill development.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card info-card p-4 text-center h-100">
-                        <i class="fa-solid fa-user-graduate fs-1 text-warning mb-3"></i>
-                        <h4 class="fw-bold">Secondary & Senior (9th to 12th)</h4>
-                        <p class="text-muted">Comprehensive preparation for board exams with experienced and dedicated faculty.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- MANAGER MESSAGE SECTION -->
-    <section class="py-5 bg-light" id="manager">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-4 text-center mb-4 mb-md-0">
-                    <div class="p-4 bg-white shadow-sm rounded border">
-                        <i class="fa-solid fa-user-tie text-secondary mb-3" style="font-size: 90px;"></i>
-                        <h4 class="fw-bold mb-1" style="color: var(--primary-navy);">Vishnu Kant</h4>
-                        <p class="text-warning fw-bold mb-0">Manager, RBS Inter College</p>
+            <!-- TAB CONTROLS -->
+            <ul class="nav nav-tabs mb-4" id="adminTabs">
+                <li class="nav-item">
+                    <button class="nav-link active fw-bold" data-bs-toggle="tab" data-bs-target="#tabSubmissions"><i class="fa-solid fa-list-check me-2"></i> Received Online Applications</button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link fw-bold" data-bs-toggle="tab" data-bs-target="#tabMarksheet"><i class="fa-solid fa-file-invoice me-2"></i> Marksheet Generator</button>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <!-- TAB 1: ONLINE APPLICATIONS TABLE -->
+                <div class="tab-pane fade show active" id="tabSubmissions">
+                    <h5 class="fw-bold mb-3 text-navy"><i class="fa-solid fa-users me-2"></i> Registered Students List</h5>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped align-middle">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Student Name</th>
+                                    <th>Father Name</th>
+                                    <th>Class</th>
+                                    <th>Mobile</th>
+                                    <th>Address</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="studentTableBody">
+                                <!-- Dynamic Rows -->
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                <div class="col-md-8">
-                    <h3 class="fw-bold mb-3" style="color: var(--primary-navy);">Manager's Message</h3>
-                    <p class="lead text-dark">"At RBS Inter College, Bithara, our aim is to provide modern, high-quality, and affordable education to every student in our region. From Nursery up to Class 12th, we focus on building knowledge, strong character, discipline, and leadership skills."</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- ADMISSION ENQUIRY FORM -->
-    <section class="py-5" id="admission">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="card shadow-lg p-4 border-0">
-                        <h3 class="fw-bold text-center mb-4" style="color: var(--primary-navy);">Admission Enquiry Form</h3>
-                        <form onsubmit="alert('Aapka enquiry form submit ho gaya hai! College team jald hi contact karegi.'); return false;">
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <label class="form-label font-weight-bold">Student Name</label>
-                                    <input type="text" class="form-control" required placeholder="Name enter karein">
+                <!-- TAB 2: MARKSHEET GENERATOR -->
+                <div class="tab-pane fade" id="tabMarksheet">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="card p-3 border">
+                                <h5 class="fw-bold text-navy mb-3">Student Details & Marks</h5>
+                                <form id="marksheetForm">
+                                    <div class="mb-2">
+                                        <label class="form-label small fw-bold">Student Name</label>
+                                        <input type="text" id="mName" class="form-control form-control-sm" required>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label small fw-bold">Father's Name</label>
+                                        <input type="text" id="mFather" class="form-control form-control-sm" required>
+                                    </div>
+                                    <div class="row g-2 mb-2">
+                                        <div class="col-6">
+                                            <label class="form-label small fw-bold">Roll No.</label>
+                                            <input type="text" id="mRoll" class="form-control form-control-sm" required placeholder="e.g. 202601">
+                                        </div>
+                                        <div class="col-6">
+                                            <label class="form-label small fw-bold">Class</label>
+                                            <input type="text" id="mClass" class="form-control form-control-sm" required placeholder="Class 10th">
+                                        </div>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label small fw-bold">Address</label>
+                                        <input type="text" id="mAddress" class="form-control form-control-sm" required placeholder="Aliganj, Etah">
+                                    </div>
+                                    <hr>
+                                    <h6>Marks Entry (Out of 100)</h6>
+                                    <div class="row g-2">
+                                        <div class="col-6"><input type="number" id="mMath" class="form-control form-control-sm mb-2" placeholder="Maths"></div>
+                                        <div class="col-6"><input type="number" id="mSci" class="form-control form-control-sm mb-2" placeholder="Science"></div>
+                                        <div class="col-6"><input type="number" id="mEng" class="form-control form-control-sm mb-2" placeholder="English"></div>
+                                        <div class="col-6"><input type="number" id="mHin" class="form-control form-control-sm mb-2" placeholder="Hindi"></div>
+                                    </div>
+                                    <button type="button" onclick="generateMarksheet()" class="btn btn-warning btn-sm w-100 fw-bold mt-2"><i class="fa-solid fa-arrows-rotate me-1"></i> Generate Marksheet</button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- MARKSHEET PREVIEW -->
+                        <div class="col-md-7">
+                            <div id="printableMarksheet" class="marksheet-box">
+                                <div class="text-center border-bottom pb-3 mb-3">
+                                    <h3 class="fw-bold mb-1" style="color: var(--primary-navy);">RBS INTER COLLEGE</h3>
+                                    <p class="mb-0 small fw-bold">BITHARA, ALIGANJ, ETAH (U.P.) - 207247</p>
+                                    <span class="badge bg-warning text-dark mt-1">OFFICIAL ACADEMIC MARKSHEET</span>
                                 </div>
-                                <div class="col-md-6">
-                                    <label class="form-label font-weight-bold">Father/Guardian Name</label>
-                                    <input type="text" class="form-control" required placeholder="Father name enter karein">
+
+                                <div class="row small mb-3">
+                                    <div class="col-6">
+                                        <p class="mb-1"><strong>Student Name:</strong> <span id="outName">---</span></p>
+                                        <p class="mb-1"><strong>Father Name:</strong> <span id="outFather">---</span></p>
+                                        <p class="mb-1"><strong>Roll Number:</strong> <span id="outRoll">---</span></p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="mb-1"><strong>Class:</strong> <span id="outClass">---</span></p>
+                                        <p class="mb-1"><strong>Session:</strong> 2025-2026</p>
+                                        <p class="mb-1"><strong>Address:</strong> <span id="outAddress">---</span></p>
+                                    </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <label class="form-label font-weight-bold">Class Applied For</label>
-                                    <select class="form-select" required>
-                                        <option value="">Class select karein</option>
-                                        <option>NC / Nursery</option>
-                                        <option>LKG / UKG</option>
-                                        <option>Class 1st to 5th</option>
-                                        <option>Class 6th to 8th</option>
-                                        <option>Class 9th / 10th</option>
-                                        <option>Class 11th / 12th</option>
-                                    </select>
+
+                                <table class="table table-bordered table-sm small text-center mb-3">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Subject</th>
+                                            <th>Max Marks</th>
+                                            <th>Marks Obtained</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>Mathematics</td><td>100</td><td id="outMath">0</td></tr>
+                                        <tr><td>Science</td><td>100</td><td id="outSci">0</td></tr>
+                                        <tr><td>English</td><td>100</td><td id="outEng">0</td></tr>
+                                        <tr><td>Hindi</td><td>100</td><td id="outHin">0</td></tr>
+                                    </tbody>
+                                </table>
+
+                                <div class="p-2 bg-light border rounded mb-3 small d-flex justify-content-between">
+                                    <span><strong>Grand Total:</strong> <span id="outTotal">0</span> / 400</span>
+                                    <span><strong>Percentage:</strong> <span id="outPer">0%</span></span>
+                                    <span><strong>Result:</strong> <span id="outResult" class="fw-bold">---</span></span>
                                 </div>
-                                <div class="col-md-6">
-                                    <label class="form-label font-weight-bold">Mobile Number</label>
-                                    <input type="tel" class="form-control" required placeholder="Mobile number">
-                                </div>
-                                <div class="col-12">
-                                    <label class="form-label font-weight-bold">Address</label>
-                                    <textarea class="form-control" rows="2" placeholder="Full address"></textarea>
-                                </div>
-                                <div class="col-12 text-center mt-4">
-                                    <button type="submit" class="btn btn-warning fw-bold px-5 py-2">Submit Enquiry</button>
+
+                                <div class="d-flex justify-content-between align-items-end mt-4 pt-3">
+                                    <div class="text-center">
+                                        <small>Class Teacher Sign</small>
+                                    </div>
+                                    <div class="text-center">
+                                        <strong style="color:var(--primary-navy)">Vishnu Kant</strong><br>
+                                        <small>Manager Signature</small>
+                                    </div>
                                 </div>
                             </div>
-                        </form>
+                            <button onclick="window.print()" class="btn btn-dark w-100 mt-3 fw-bold"><i class="fa-solid fa-print me-2"></i> Print / Download Marksheet PDF</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+
+    <!-- LOGIN MODAL -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header text-white" style="background: var(--primary-navy);">
+                    <h5 class="modal-header-title fw-bold"><i class="fa-solid fa-user-shield text-warning me-2"></i> Admin Login</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="adminLoginForm">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Admin Email ID</label>
+                            <input type="email" id="loginEmail" class="form-control" placeholder="rbsintercollege@123" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Password</label>
+                            <input type="password" id="loginPass" class="form-control" placeholder="vishnukant@207247" required>
+                        </div>
+                        <button type="submit" class="btn btn-warning w-100 fw-bold py-2">Login To Admin Dashboard</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- FOOTER -->
-    <footer id="contact" class="pt-5">
+    <footer id="contact" class="pt-5 mt-5">
         <div class="container pb-4">
             <div class="row g-4">
                 <div class="col-md-5">
                     <h4 class="fw-bold text-warning mb-3">RBS INTER COLLEGE</h4>
                     <p><i class="fa-solid fa-location-dot me-2 text-warning"></i> Bithara, Aliganj, Etah, Uttar Pradesh - 207247</p>
                     <p><i class="fa-solid fa-phone me-2 text-warning"></i> Manager (Vishnu Kant): +91 6395052394</p>
-                    <p><i class="fa-solid fa-graduation-cap me-2 text-warning"></i> Classes: NC to Class 12th</p>
+                    <p><i class="fa-solid fa-graduation-cap me-2 text-warning"></i> Class 1st to Class 12th</p>
                 </div>
                 <div class="col-md-3">
-                    <h5 class="fw-bold text-warning mb-3">Quick Links</h5>
+                    <h5 class="fw-bold text-warning mb-3">Quick Navigation</h5>
                     <ul class="list-unstyled">
                         <li class="mb-2"><a href="#" class="text-white text-decoration-none">Home</a></li>
-                        <li class="mb-2"><a href="#academics" class="text-white text-decoration-none">Academic Classes</a></li>
-                        <li class="mb-2"><a href="#admission" class="text-white text-decoration-none">Admission Enquiry</a></li>
+                        <li class="mb-2"><a href="#academics" class="text-white text-decoration-none">Academics</a></li>
+                        <li class="mb-2"><a href="#admission" class="text-white text-decoration-none">Admission Form</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">
-                    <h5 class="fw-bold text-warning mb-3">Call For Admissions</h5>
-                    <p>Admissions related enquiry ke liye direct call karein:</p>
+                    <h5 class="fw-bold text-warning mb-3">Contact Helpline</h5>
                     <a href="tel:6395052394" class="btn btn-warning fw-bold w-100 py-2"><i class="fa-solid fa-phone me-2"></i> Call: 6395052394</a>
                 </div>
             </div>
         </div>
-        <div class="footer-bottom text-center text-muted">
-            <small>© 2026 RBS Inter College, Bithara, Aliganj, Etah. All Rights Reserved.</small>
+        <div class="bg-dark text-center text-muted py-3">
+            <small>© 2026 RBS Inter College, Bithara, Aliganj. All Rights Reserved.</small>
         </div>
     </footer>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JS LOGIC -->
+    <script>
+        // Sample Applications Data Array
+        let studentApplications = [
+            { name: "Rahul Kumar", father: "Suresh Chandra", class: "Class 10th", phone: "9876543210", address: "Aliganj, Etah" }
+        ];
+
+        // Speech AI Functionality
+        function speakWelcome() {
+            if ('speechSynthesis' in window) {
+                let speech = new SpeechSynthesisUtterance();
+                speech.text = "Welcome Mr. Vishnu, let's work together";
+                speech.lang = "en-US";
+                speech.rate = 0.9;
+                window.speechSynthesis.speak(speech);
+            }
+        }
+
+        // Handle Public Admission Form Submission
+        document.getElementById('publicAdmissionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let newStudent = {
+                name: document.getElementById('sName').value,
+                father: document.getElementById('sFather').value,
+                class: document.getElementById('sClass').value,
+                phone: document.getElementById('sPhone').value,
+                address: document.getElementById('sAddress').value
+            };
+            studentApplications.push(newStudent);
+            alert("✅ Admission Application Submitted Successfully!");
+            this.reset();
+            renderTable();
+        });
+
+        // Handle Admin Login
+        document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let email = document.getElementById('loginEmail').value;
+            let pass = document.getElementById('loginPass').value;
+
+            if(email === "rbsintercollege@123" && pass === "vishnukant@207247") {
+                let loginModal = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
+                loginModal.hide();
+                
+                document.getElementById('publicContent').style.display = "none";
+                document.getElementById('adminPanel').style.display = "block";
+                
+                renderTable();
+                speakWelcome(); // Trigger Voice Assistant
+            } else {
+                alert("❌ Invalid Email or Password!");
+            }
+        });
+
+        // Logout
+        function logoutAdmin() {
+            document.getElementById('adminPanel').style.display = "none";
+            document.getElementById('publicContent').style.display = "block";
+        }
+
+        // Render Student Applications Table
+        function renderTable() {
+            let tbody = document.getElementById('studentTableBody');
+            tbody.innerHTML = "";
+            studentApplications.forEach((s, idx) => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td>${idx + 1}</td>
+                        <td><strong>${s.name}</strong></td>
+                        <td>${s.father}</td>
+                        <td><span class="badge bg-navy">${s.class}</span></td>
+                        <td>${s.phone}</td>
+                        <td>${s.address}</td>
+                        <td>
+                            <button class="btn btn-sm btn-warning" onclick="fillMarksheet('${s.name}', '${s.father}', '${s.class}', '${s.address}')">
+                                <i class="fa-solid fa-file-pen"></i> Create Marksheet
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        // Auto-fill student data into Marksheet Generator
+        function fillMarksheet(name, father, sClass, address) {
+            document.getElementById('mName').value = name;
+            document.getElementById('mFather').value = father;
+            document.getElementById('mClass').value = sClass;
+            document.getElementById('mAddress').value = address;
+            
+            // Switch to Marksheet Tab
+            var firstTabEl = document.querySelector('#adminTabs button[data-bs-target="#tabMarksheet"]');
+            var tab = new bootstrap.Tab(firstTabEl);
+            tab.show();
+        }
+
+        // Generate Marksheet Logic
+        function generateMarksheet() {
+            let name = document.getElementById('mName').value;
+            let father = document.getElementById('mFather').value;
+            let roll = document.getElementById('mRoll').value;
+            let sClass = document.getElementById('mClass').value;
+            let address = document.getElementById('mAddress').value;
+
+            let math = parseFloat(document.getElementById('mMath').value) || 0;
+            let sci = parseFloat(document.getElementById('mSci').value) || 0;
+            let eng = parseFloat(document.getElementById('mEng').value) || 0;
+            let hin = parseFloat(document.getElementById('mHin').value) || 0;
+
+            let total = math + sci + eng + hin;
+            let per = (total / 400) * 100;
+
+            document.getElementById('outName').innerText = name;
+            document.getElementById('outFather').innerText = father;
+            document.getElementById('outRoll').innerText = roll;
+            document.getElementById('outClass').innerText = sClass;
+            document.getElementById('outAddress').innerText = address;
+
+            document.getElementById('outMath').innerText = math;
+            document.getElementById('outSci').innerText = sci;
+            document.getElementById('outEng').innerText = eng;
+            document.getElementById('outHin').innerText = hin;
+
+            document.getElementById('outTotal').innerText = total;
+            document.getElementById('outPer').innerText = per.toFixed(2) + "%";
+            document.getElementById('outResult').innerText = per >= 33 ? "PASSED" : "FAILED";
+            document.getElementById('outResult').className = per >= 33 ? "fw-bold text-success" : "fw-bold text-danger";
+        }
+    </script>
 </body>
 </html>
