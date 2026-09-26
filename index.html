@@ -1,209 +1,207 @@
-import sqlite3
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RBS Inter College | Bithara, Aliganj, Etah</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-navy: #0B1D3A;
+            --accent-gold: #C5A059;
+            --light-bg: #F8F9FA;
+        }
 
-# --- DATABASE SETUP ---
-conn = sqlite3.connect("js_vidya_niketan.db")
-cursor = conn.cursor()
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #fff; }
 
-# Database Table Setup
-cursor.execute("""
-CREATE TABLE IF NOT EXISTS students (
-    roll_no TEXT PRIMARY KEY,
-    name TEXT NOT NULL,
-    class_name TEXT NOT NULL,
-    maths_fa1 REAL DEFAULT 0, maths_fa2 REAL DEFAULT 0, maths_sa1 REAL DEFAULT 0,
-    maths_fa3 REAL DEFAULT 0, maths_fa4 REAL DEFAULT 0, maths_sa2 REAL DEFAULT 0,
-    sci_fa1 REAL DEFAULT 0, sci_fa2 REAL DEFAULT 0, sci_sa1 REAL DEFAULT 0,
-    sci_fa3 REAL DEFAULT 0, sci_fa4 REAL DEFAULT 0, sci_sa2 REAL DEFAULT 0,
-    eng_fa1 REAL DEFAULT 0, eng_fa2 REAL DEFAULT 0, eng_sa1 REAL DEFAULT 0,
-    eng_fa3 REAL DEFAULT 0, eng_fa4 REAL DEFAULT 0, eng_sa2 REAL DEFAULT 0,
-    hin_fa1 REAL DEFAULT 0, hin_fa2 REAL DEFAULT 0, hin_sa1 REAL DEFAULT 0,
-    hin_fa3 REAL DEFAULT 0, hin_fa4 REAL DEFAULT 0, hin_sa2 REAL DEFAULT 0
-)
-""")
-conn.commit()
+        /* Top Bar */
+        .top-bar { background-color: var(--primary-navy); color: #fff; padding: 6px 0; font-size: 0.9rem; border-bottom: 2px solid var(--accent-gold); }
+        .top-bar a { color: #fff; text-decoration: none; margin-left: 15px; }
 
+        /* Main Header */
+        .header-section { padding: 15px 0; background: #fff; }
+        .logo-img { height: 90px; width: 90px; border-radius: 50%; border: 2px solid var(--accent-gold); }
+        .school-title { color: var(--primary-navy); font-weight: 800; font-size: 2rem; letter-spacing: 1px; margin-bottom: 2px; }
+        .school-sub { color: var(--accent-gold); font-weight: 600; font-size: 1.1rem; }
 
-# --- FUNCTIONS ---
+        /* Navigation Bar */
+        .navbar-custom { background-color: var(--primary-navy); border-top: 1px solid var(--accent-gold); }
+        .navbar-custom .nav-link { color: #fff !important; font-weight: 500; text-transform: uppercase; padding: 12px 20px !important; font-size: 0.95rem; }
+        .navbar-custom .nav-link:hover { background-color: var(--accent-gold); color: #000 !important; }
 
+        /* Ticker Notice */
+        .ticker-wrap { background: #e9ecef; border-bottom: 1px solid #ccc; padding: 8px 0; font-weight: 600; }
 
-def add_student():
-    print("\n--- NEW STUDENT REGISTRATION ---")
-    roll = input("Roll Number dalo: ")
-    name = input("Student Name dalo: ")
-    cls = input("Class dalo: ")
+        /* Hero Banner */
+        .hero-banner {
+            background: linear-gradient(rgba(11, 29, 58, 0.75), rgba(11, 29, 58, 0.75)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1200') center/cover;
+            color: #fff;
+            padding: 100px 0;
+            text-align: center;
+        }
 
-    try:
-        cursor.execute(
-            "INSERT INTO students (roll_no, name, class_name) VALUES (?, ?, ?)",
-            (roll, name, cls),
-        )
-        conn.commit()
-        print(
-            f"✅ Student {name} (Roll No: {roll}) System me Add Ho Gaya Hai!"
-        )
-    except sqlite3.IntegrityError:
-        print("❌ Is Roll Number ka student pehle se majood hai!")
+        /* Card Styling */
+        .info-card { border: none; border-top: 4px solid var(--primary-navy); box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: transform 0.3s; }
+        .info-card:hover { transform: translateY(-5px); }
+        
+        /* Footer */
+        footer { background-color: var(--primary-navy); color: #fff; border-top: 4px solid var(--accent-gold); }
+        .footer-bottom { background-color: #050d1a; padding: 15px 0; }
+    </style>
+</head>
+<body>
 
+    <!-- TOP HEADER BAR -->
+    <div class="top-bar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div>
+                <i class="fa-solid fa-location-dot text-warning me-2"></i> Bithara, Aliganj, Etah (207247)
+                <span class="ms-4"><i class="fa-solid fa-phone text-warning me-2"></i> +91 {{ info.mobile }}</span>
+            </div>
+            <div>
+                <span>Manager: <strong>{{ info.manager }}</strong></span>
+                <a href="#contact" class="btn btn-sm btn-outline-warning ms-3 text-white">Admissions Open (NC to 12th)</a>
+            </div>
+        </div>
+    </div>
 
-def enter_marks():
-    print("\n--- MARKS ENTRY SYSTEM (FA1, FA2, SA1, FA3, FA4, SA2) ---")
-    roll = input("Marks enter karne ke liye Roll Number dalo: ")
+    <!-- MAIN BRANDING HEADER -->
+    <header class="header-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-2 text-center text-md-start">
+                    <!-- School Logo Placeholder -->
+                    <img src="https://i.ibb.co/L519p4f/rbs-logo.jpg" alt="RBS Logo" class="logo-img">
+                </div>
+                <div class="col-md-10 text-center text-md-start">
+                    <h1 class="school-title">RBS INTER COLLEGE</h1>
+                    <div class="school-sub">BITHARA, ALIGANJ, ETAH (U.P.) - 207247</div>
+                    <small class="text-muted"><i class="fa-solid fa-graduation-cap"></i> Affiliated & Recognized Education | NC to Class 12th</small>
+                </div>
+            </div>
+        </div>
+    </header>
 
-    cursor.execute("SELECT name, class_name FROM students WHERE roll_no = ?", (roll,))
-    student = cursor.fetchone()
+    <!-- NAVIGATION MENU -->
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+        <div class="container">
+            <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#academics">Academics (NC-12th)</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#manager">Manager's Message</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    if not student:
-        print("❌ Student Nahi Mila! Pehle Roll Number Add Karein.")
-        return
+    <!-- ANNOUNCEMENT TICKER -->
+    <div class="ticker-wrap">
+        <div class="container d-flex align-items-center">
+            <span class="badge bg-danger me-3 fs-6"><i class="fa-solid fa-bell"></i> LATEST NEWS:</span>
+            <marquee behavior="scroll" direction="left" scrollamount="6">
+                ✨ Admissions are now OPEN for Session 2026-27 from Nursery/NC to Class 12th! Visit campus for registration details.
+            </marquee>
+        </div>
+    </div>
 
-    print(f"\nStudent Found: {student[0]} | Class: {student[1]}")
-    print("\nExam Type Chuno:")
-    print("1. FA1 (10 Marks Max)")
-    print("2. FA2 (10 Marks Max)")
-    print("3. SA1 (30 Marks Max)")
-    print("4. FA3 (10 Marks Max)")
-    print("5. FA4 (10 Marks Max)")
-    print("6. SA2 (30 Marks Max)")
+    <!-- HERO SECTION -->
+    <div class="hero-banner">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Welcome to RBS Inter College</h1>
+            <p class="lead text-warning fw-semibold">Quality Education for Every Child from Nursery to 12th Grade</p>
+            <a href="#contact" class="btn btn-lg btn-warning mt-3 fw-bold"><i class="fa-solid fa-paper-plane me-2"></i> Apply For Admission</a>
+        </div>
+    </div>
 
-    exam_opt = input("Option No. Dalo (1-6): ")
-    exam_map = {
-        "1": "fa1",
-        "2": "fa2",
-        "3": "sa1",
-        "4": "fa3",
-        "5": "fa4",
-        "6": "sa2",
-    }
+    <!-- MAIN FEATURES / ACADEMICS -->
+    <section class="py-5" id="academics">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold text-navy" style="color: var(--primary-navy);">OUR ACADEMIC WINGS</h2>
+                <div style="height:3px; width:80px; background:var(--accent-gold); margin:auto;"></div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card info-card p-4 text-center h-100">
+                        <i class="fa-solid fa-child fs-1 text-warning mb-3"></i>
+                        <h4 class="fw-bold">Pre-Primary (NC to KG)</h4>
+                        <p class="text-muted">Activity-based learning, playgroup routines, and foundation building in a safe environment.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card info-card p-4 text-center h-100">
+                        <i class="fa-solid fa-book-open fs-1 text-warning mb-3"></i>
+                        <h4 class="fw-bold">Primary & Middle (1st to 8th)</h4>
+                        <p class="text-muted">Strong focus on core subjects, moral values, discipline, and personality development.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card info-card p-4 text-center h-100">
+                        <i class="fa-solid fa-user-graduate fs-1 text-warning mb-3"></i>
+                        <h4 class="fw-bold">Secondary & Senior (9th to 12th)</h4>
+                        <p class="text-muted">Comprehensive board exam preparation with experienced faculty and career guidance.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    if exam_opt not in exam_map:
-        print("❌ Galat option!")
-        return
+    <!-- MANAGER MESSAGE SECTION -->
+    <section class="py-5 bg-light" id="manager">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-4 text-center mb-4 mb-md-0">
+                    <div class="p-3 bg-white shadow-sm rounded border">
+                        <i class="fa-solid fa-user-tie fs-1 text-secondary mb-2" style="font-size: 80px !important;"></i>
+                        <h4 class="fw-bold mt-2" style="color: var(--primary-navy);">Vishnu Kant</h4>
+                        <p class="text-warning fw-bold mb-0">Manager, RBS Inter College</p>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <h3 class="fw-bold mb-3" style="color: var(--primary-navy);">Manager's Message</h3>
+                    <p class="lead text-dark">"At RBS Inter College, our mission is to provide affordable, high-quality, and modern education to the students of Bithara and surrounding areas. We empower students from Nursery up to Class 12th with knowledge, leadership qualities, and sound ethical values."</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    exam_type = exam_map[exam_opt]
+    <!-- FOOTER / CONTACT -->
+    <footer id="contact" class="pt-5">
+        <div class="container pb-4">
+            <div class="row g-4">
+                <div class="col-md-5">
+                    <h4 class="fw-bold text-warning mb-3">RBS INTER COLLEGE</h4>
+                    <p><i class="fa-solid fa-location-dot me-2"></i> Bithara, Aliganj, Etah, Uttar Pradesh - 207247</p>
+                    <p><i class="fa-solid fa-phone me-2"></i> Manager (Vishnu Kant): +91 6395052394</p>
+                    <p><i class="fa-solid fa-school me-2"></i> Classes: NC to Class 12th</p>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="fw-bold text-warning mb-3">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white text-decoration-none">Admissions</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Academic Calendar</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Notice Board</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="fw-bold text-warning mb-3">Enquiry Hotline</h5>
+                    <p>For admissions or queries, feel free to call the college office during working hours.</p>
+                    <a href="tel:6395052394" class="btn btn-warning fw-bold w-100"><i class="fa-solid fa-phone me-2"></i> Call Now: 6395052394</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom text-center text-muted">
+            <small>© 2026 RBS Inter College, Bithara, Aliganj. All Rights Reserved.</small>
+        </div>
+    </footer>
 
-    print(f"\n--- Entering Marks for Exam: {exam_type.upper()} ---")
-    m_math = float(input("Mathematics Marks: "))
-    m_sci = float(input("Science Marks: "))
-    m_eng = float(input("English Marks: "))
-    m_hin = float(input("Hindi Marks: "))
-
-    query = f"""
-        UPDATE students 
-        SET maths_{exam_type} = ?, sci_{exam_type} = ?, eng_{exam_type} = ?, hin_{exam_type} = ?
-        WHERE roll_no = ?
-    """
-    cursor.execute(query, (m_math, m_sci, m_eng, m_hin, roll))
-    conn.commit()
-    print(f"✅ {exam_type.upper()} ke Marks Safaltapoorvak Save Ho Gaye!")
-
-
-def generate_marksheet():
-    print("\n--- GENERATE PROFESSIONAL MARKSHEET ---")
-    roll = input("Marksheet ke liye Roll Number Dalo: ")
-
-    cursor.execute("SELECT * FROM students WHERE roll_no = ?", (roll,))
-    row = cursor.fetchone()
-
-    if not row:
-        print("❌ Is Roll Number ka student nahi mila!")
-        return
-
-    # Data Extracting
-    roll_no, name, class_name = row[0], row[1], row[2]
-    m_m = row[3:9]  # Maths: FA1, FA2, SA1, FA3, FA4, SA2
-    m_s = row[9:15]  # Science
-    m_e = row[15:21]  # English
-    m_h = row[21:27]  # Hindi
-
-    # Totals Calculation
-    math_tot = sum(m_m)
-    sci_tot = sum(m_s)
-    eng_tot = sum(m_e)
-    hin_tot = sum(m_h)
-
-    grand_total = math_tot + sci_tot + eng_tot + hin_tot
-    percentage = (grand_total / 400) * 100
-
-    if percentage >= 75:
-        grade = "A+ (Distinction)"
-    elif percentage >= 60:
-        grade = "A (First Division)"
-    elif percentage >= 50:
-        grade = "B (Second Division)"
-    elif percentage >= 33:
-        grade = "C (Third Division)"
-    else:
-        grade = "F (Needs Improvement)"
-
-    # PRINT MARKSHEET FORMAT
-    print("\n" + "=" * 78)
-    print("                    J.S. VIDYA NIKETAN                    ".center(78))
-    print(
-        "    Radha Krishna Maholla, Aliganj, Etah (U.P.) - 207247    ".center(
-            78
-        )
-    )
-    print("                   ANNUAL PERFORMANCE REPORT CARD                 ")
-    print("=" * 78)
-    print(f" Student Name : {name:<30} Roll No. : {roll_no}")
-    print(f" Class        : {class_name:<30} Session  : 2025-2026")
-    print("-" * 78)
-    print(
-        f"{'SUBJECT':<15} | {'FA1':<4} | {'FA2':<4} | {'SA1':<4} | {'FA3':<4} | {'FA4':<4} | {'SA2':<4} | {'TOTAL (100)':<11}"
-    )
-    print("-" * 78)
-
-    print(
-        f"{'Mathematics':<15} | {m_m[0]:<4} | {m_m[1]:<4} | {m_m[2]:<4} | {m_m[3]:<4} | {m_m[4]:<4} | {m_m[5]:<4} | {math_tot:<11.1f}"
-    )
-    print(
-        f"{'Science':<15} | {m_s[0]:<4} | {m_s[1]:<4} | {m_s[2]:<4} | {m_s[3]:<4} | {m_s[4]:<4} | {m_s[5]:<4} | {sci_tot:<11.1f}"
-    )
-    print(
-        f"{'English':<15} | {m_e[0]:<4} | {m_e[1]:<4} | {m_e[2]:<4} | {m_e[3]:<4} | {m_e[4]:<4} | {m_e[5]:<4} | {eng_tot:<11.1f}"
-    )
-    print(
-        f"{'Hindi':<15} | {m_h[0]:<4} | {m_h[1]:<4} | {m_h[2]:<4} | {m_h[3]:<4} | {m_h[4]:<4} | {m_h[5]:<4} | {hin_tot:<11.1f}"
-    )
-
-    print("-" * 78)
-    print(
-        f" GRAND TOTAL : {grand_total:.1f} / 400 | PERCENTAGE : {percentage:.2f}% | GRADE : {grade}"
-    )
-    print("=" * 78)
-    print(" Result Status : PASSED" if percentage >= 33 else " Result Status : FAILED")
-    print("\n Sign (Class Teacher)                         Sign (Principal)")
-    print("=" * 78 + "\n")
-
-
-# --- MAIN MENU LOOP ---
-def main():
-    while True:
-        print("\n========================================================")
-        print("    J.S. VIDYA NIKETAN - SCHOOL MANAGEMENT SYSTEM       ")
-        print("========================================================")
-        print("1. Add New Student")
-        print("2. Enter Subject Marks (FA1, FA2, SA1, FA3, FA4, SA2)")
-        print("3. Search & Generate Marksheet")
-        print("4. Exit Program")
-
-        choice = input("\nSelect Option (1-4): ")
-
-        if choice == "1":
-            add_student()
-        elif choice == "2":
-            enter_marks()
-        elif choice == "3":
-            generate_marksheet()
-        elif choice == "4":
-            print(
-                "\nSystem successfully closed. Data has been safely stored in Database!"
-            )
-            conn.close()
-            break
-        else:
-            print("❌ Invalid Option! Sahi option chunein.")
-
-
-if __name__ == "__main__":
-    main()
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
