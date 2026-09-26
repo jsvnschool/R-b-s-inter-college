@@ -1,67 +1,158 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RBS Inter College | Bithara, Aliganj, Etah</title>
+    
+    <!-- Bootstrap 5 CSS & FontAwesome Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
     <style>
         :root {
-            --primary-navy: #0B1D3A;
-            --accent-gold: #C5A059;
+            --primary-navy: #0F2027;
+            --secondary-navy: #203A43;
+            --accent-gold: #D4AF37;
             --light-bg: #F8F9FA;
         }
 
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #fff; }
+        body { 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            background-color: #ffffff;
+            color: #333;
+        }
 
         /* Top Bar */
-        .top-bar { background-color: var(--primary-navy); color: #fff; padding: 6px 0; font-size: 0.9rem; border-bottom: 2px solid var(--accent-gold); }
-        .top-bar a { color: #fff; text-decoration: none; margin-left: 15px; }
+        .top-bar { 
+            background-color: var(--primary-navy); 
+            color: #fff; 
+            padding: 8px 0; 
+            font-size: 0.9rem; 
+            border-bottom: 2px solid var(--accent-gold); 
+        }
 
-        /* Main Header */
-        .header-section { padding: 15px 0; background: #fff; }
-        .logo-img { height: 90px; width: 90px; border-radius: 50%; border: 2px solid var(--accent-gold); }
-        .school-title { color: var(--primary-navy); font-weight: 800; font-size: 2rem; letter-spacing: 1px; margin-bottom: 2px; }
-        .school-sub { color: var(--accent-gold); font-weight: 600; font-size: 1.1rem; }
+        /* Main Branding Header */
+        .header-section { 
+            padding: 20px 0; 
+            background: #fff; 
+        }
+
+        /* Logo Design matching uploaded image */
+        .logo-container {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background-color: #0A192F;
+            border: 4px double var(--accent-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: var(--accent-gold);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            margin: auto;
+        }
+
+        .logo-inner-ring {
+            width: 95px;
+            height: 95px;
+            border-radius: 50%;
+            border: 1px solid var(--accent-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 2px;
+        }
+
+        .logo-text-top { font-size: 7px; font-weight: bold; letter-spacing: 0.5px; text-transform: uppercase; }
+        .logo-main-title { font-size: 22px; font-weight: 900; line-height: 1; margin: 2px 0; color: #fff; font-family: 'Times New Roman', serif; }
+        .logo-icon { font-size: 14px; margin-bottom: 2px; }
+        .logo-text-bottom { font-size: 6px; font-weight: bold; letter-spacing: 0.5px; }
+
+        .school-title { 
+            color: var(--primary-navy); 
+            font-weight: 900; 
+            font-size: 2.3rem; 
+            letter-spacing: 1px; 
+            margin-bottom: 2px; 
+        }
+        .school-sub { 
+            color: var(--accent-gold); 
+            font-weight: 700; 
+            font-size: 1.2rem; 
+        }
 
         /* Navigation Bar */
-        .navbar-custom { background-color: var(--primary-navy); border-top: 1px solid var(--accent-gold); }
-        .navbar-custom .nav-link { color: #fff !important; font-weight: 500; text-transform: uppercase; padding: 12px 20px !important; font-size: 0.95rem; }
-        .navbar-custom .nav-link:hover { background-color: var(--accent-gold); color: #000 !important; }
+        .navbar-custom { 
+            background-color: var(--primary-navy); 
+            border-top: 1px solid var(--accent-gold); 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .navbar-custom .nav-link { 
+            color: #fff !important; 
+            font-weight: 600; 
+            text-transform: uppercase; 
+            padding: 12px 18px !important; 
+            font-size: 0.95rem; 
+        }
+        .navbar-custom .nav-link:hover { 
+            background-color: var(--accent-gold); 
+            color: #000 !important; 
+        }
 
         /* Ticker Notice */
-        .ticker-wrap { background: #e9ecef; border-bottom: 1px solid #ccc; padding: 8px 0; font-weight: 600; }
+        .ticker-wrap { 
+            background: #f1f3f5; 
+            border-bottom: 1px solid #ddd; 
+            padding: 8px 0; 
+            font-weight: 600; 
+        }
 
         /* Hero Banner */
         .hero-banner {
-            background: linear-gradient(rgba(11, 29, 58, 0.75), rgba(11, 29, 58, 0.75)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1200') center/cover;
+            background: linear-gradient(rgba(15, 32, 39, 0.8), rgba(15, 32, 39, 0.8)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1200') center/cover;
             color: #fff;
-            padding: 100px 0;
+            padding: 110px 0;
             text-align: center;
         }
 
-        /* Card Styling */
-        .info-card { border: none; border-top: 4px solid var(--primary-navy); box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: transform 0.3s; }
+        /* Cards */
+        .info-card { 
+            border: none; 
+            border-top: 4px solid var(--primary-navy); 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08); 
+            transition: transform 0.3s; 
+            border-radius: 8px;
+        }
         .info-card:hover { transform: translateY(-5px); }
-        
+
         /* Footer */
-        footer { background-color: var(--primary-navy); color: #fff; border-top: 4px solid var(--accent-gold); }
-        .footer-bottom { background-color: #050d1a; padding: 15px 0; }
+        footer { 
+            background-color: var(--primary-navy); 
+            color: #fff; 
+            border-top: 4px solid var(--accent-gold); 
+        }
+        .footer-bottom { 
+            background-color: #081217; 
+            padding: 15px 0; 
+        }
     </style>
 </head>
 <body>
 
     <!-- TOP HEADER BAR -->
     <div class="top-bar">
-        <div class="container d-flex justify-content-between align-items-center">
+        <div class="container d-flex justify-content-between align-items-center flex-wrap">
             <div>
                 <i class="fa-solid fa-location-dot text-warning me-2"></i> Bithara, Aliganj, Etah (207247)
-                <span class="ms-4"><i class="fa-solid fa-phone text-warning me-2"></i> +91 {{ info.mobile }}</span>
+                <span class="ms-3 d-none d-md-inline"><i class="fa-solid fa-phone text-warning me-2"></i> +91 6395052394</span>
             </div>
             <div>
-                <span>Manager: <strong>{{ info.manager }}</strong></span>
-                <a href="#contact" class="btn btn-sm btn-outline-warning ms-3 text-white">Admissions Open (NC to 12th)</a>
+                <span>Manager: <strong>Vishnu Kant</strong></span>
+                <a href="#admission" class="btn btn-sm btn-warning ms-3 fw-bold text-dark">Admissions Open</a>
             </div>
         </div>
     </div>
@@ -70,14 +161,21 @@
     <header class="header-section">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-md-2 text-center text-md-start">
-                    <!-- School Logo Placeholder -->
-                    <img src="https://i.ibb.co/L519p4f/rbs-logo.jpg" alt="RBS Logo" class="logo-img">
+                <div class="col-md-2 text-center text-md-start mb-3 mb-md-0">
+                    <!-- Pure CSS/HTML Logo matching image -->
+                    <div class="logo-container">
+                        <div class="logo-inner-ring">
+                            <span class="logo-text-top">RBS INTER COLLEGE</span>
+                            <span class="logo-main-title">RBS</span>
+                            <i class="fa-solid fa-book-open logo-icon"></i>
+                            <span class="logo-text-bottom">BITHARA ETAH</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-10 text-center text-md-start">
                     <h1 class="school-title">RBS INTER COLLEGE</h1>
                     <div class="school-sub">BITHARA, ALIGANJ, ETAH (U.P.) - 207247</div>
-                    <small class="text-muted"><i class="fa-solid fa-graduation-cap"></i> Affiliated & Recognized Education | NC to Class 12th</small>
+                    <small class="text-muted"><i class="fa-solid fa-graduation-cap text-warning me-1"></i> Recognized Education | NC to Class 12th</small>
                 </div>
             </div>
         </div>
@@ -92,9 +190,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About College</a></li>
                     <li class="nav-item"><a class="nav-link" href="#academics">Academics (NC-12th)</a></li>
                     <li class="nav-item"><a class="nav-link" href="#manager">Manager's Message</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#admission">Admission Form</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact Us</a></li>
                 </ul>
             </div>
@@ -104,27 +203,27 @@
     <!-- ANNOUNCEMENT TICKER -->
     <div class="ticker-wrap">
         <div class="container d-flex align-items-center">
-            <span class="badge bg-danger me-3 fs-6"><i class="fa-solid fa-bell"></i> LATEST NEWS:</span>
+            <span class="badge bg-danger me-3 fs-6"><i class="fa-solid fa-bell"></i> NOTICE:</span>
             <marquee behavior="scroll" direction="left" scrollamount="6">
-                ✨ Admissions are now OPEN for Session 2026-27 from Nursery/NC to Class 12th! Visit campus for registration details.
+                ✨ New Admissions are OPEN for Session 2026-27 from Nursery (NC) to Class 12th! Visit campus for registration details.
             </marquee>
         </div>
     </div>
 
-    <!-- HERO SECTION -->
+    <!-- HERO BANNER -->
     <div class="hero-banner">
         <div class="container">
             <h1 class="display-4 fw-bold">Welcome to RBS Inter College</h1>
-            <p class="lead text-warning fw-semibold">Quality Education for Every Child from Nursery to 12th Grade</p>
-            <a href="#contact" class="btn btn-lg btn-warning mt-3 fw-bold"><i class="fa-solid fa-paper-plane me-2"></i> Apply For Admission</a>
+            <p class="lead text-warning fw-semibold fs-4">Quality Education for Every Child from Nursery to Class 12th</p>
+            <a href="#admission" class="btn btn-lg btn-warning mt-3 fw-bold px-4 py-2"><i class="fa-solid fa-paper-plane me-2"></i> Apply For Admission</a>
         </div>
     </div>
 
-    <!-- MAIN FEATURES / ACADEMICS -->
+    <!-- ACADEMIC WINGS -->
     <section class="py-5" id="academics">
         <div class="container">
             <div class="text-center mb-5">
-                <h2 class="fw-bold text-navy" style="color: var(--primary-navy);">OUR ACADEMIC WINGS</h2>
+                <h2 class="fw-bold" style="color: var(--primary-navy);">OUR ACADEMIC SECTIONS</h2>
                 <div style="height:3px; width:80px; background:var(--accent-gold); margin:auto;"></div>
             </div>
             <div class="row g-4">
@@ -132,21 +231,21 @@
                     <div class="card info-card p-4 text-center h-100">
                         <i class="fa-solid fa-child fs-1 text-warning mb-3"></i>
                         <h4 class="fw-bold">Pre-Primary (NC to KG)</h4>
-                        <p class="text-muted">Activity-based learning, playgroup routines, and foundation building in a safe environment.</p>
+                        <p class="text-muted">Activity-based learning, foundational education, and care in a safe environment.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card info-card p-4 text-center h-100">
                         <i class="fa-solid fa-book-open fs-1 text-warning mb-3"></i>
                         <h4 class="fw-bold">Primary & Middle (1st to 8th)</h4>
-                        <p class="text-muted">Strong focus on core subjects, moral values, discipline, and personality development.</p>
+                        <p class="text-muted">Focus on core conceptual learning, moral values, discipline, and skill development.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card info-card p-4 text-center h-100">
                         <i class="fa-solid fa-user-graduate fs-1 text-warning mb-3"></i>
                         <h4 class="fw-bold">Secondary & Senior (9th to 12th)</h4>
-                        <p class="text-muted">Comprehensive board exam preparation with experienced faculty and career guidance.</p>
+                        <p class="text-muted">Comprehensive preparation for board exams with experienced and dedicated faculty.</p>
                     </div>
                 </div>
             </div>
@@ -158,50 +257,99 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-4 text-center mb-4 mb-md-0">
-                    <div class="p-3 bg-white shadow-sm rounded border">
-                        <i class="fa-solid fa-user-tie fs-1 text-secondary mb-2" style="font-size: 80px !important;"></i>
-                        <h4 class="fw-bold mt-2" style="color: var(--primary-navy);">Vishnu Kant</h4>
+                    <div class="p-4 bg-white shadow-sm rounded border">
+                        <i class="fa-solid fa-user-tie text-secondary mb-3" style="font-size: 90px;"></i>
+                        <h4 class="fw-bold mb-1" style="color: var(--primary-navy);">Vishnu Kant</h4>
                         <p class="text-warning fw-bold mb-0">Manager, RBS Inter College</p>
                     </div>
                 </div>
                 <div class="col-md-8">
                     <h3 class="fw-bold mb-3" style="color: var(--primary-navy);">Manager's Message</h3>
-                    <p class="lead text-dark">"At RBS Inter College, our mission is to provide affordable, high-quality, and modern education to the students of Bithara and surrounding areas. We empower students from Nursery up to Class 12th with knowledge, leadership qualities, and sound ethical values."</p>
+                    <p class="lead text-dark">"At RBS Inter College, Bithara, our aim is to provide modern, high-quality, and affordable education to every student in our region. From Nursery up to Class 12th, we focus on building knowledge, strong character, discipline, and leadership skills."</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER / CONTACT -->
+    <!-- ADMISSION ENQUIRY FORM -->
+    <section class="py-5" id="admission">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card shadow-lg p-4 border-0">
+                        <h3 class="fw-bold text-center mb-4" style="color: var(--primary-navy);">Admission Enquiry Form</h3>
+                        <form onsubmit="alert('Aapka enquiry form submit ho gaya hai! College team jald hi contact karegi.'); return false;">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label font-weight-bold">Student Name</label>
+                                    <input type="text" class="form-control" required placeholder="Name enter karein">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label font-weight-bold">Father/Guardian Name</label>
+                                    <input type="text" class="form-control" required placeholder="Father name enter karein">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label font-weight-bold">Class Applied For</label>
+                                    <select class="form-select" required>
+                                        <option value="">Class select karein</option>
+                                        <option>NC / Nursery</option>
+                                        <option>LKG / UKG</option>
+                                        <option>Class 1st to 5th</option>
+                                        <option>Class 6th to 8th</option>
+                                        <option>Class 9th / 10th</option>
+                                        <option>Class 11th / 12th</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label font-weight-bold">Mobile Number</label>
+                                    <input type="tel" class="form-control" required placeholder="Mobile number">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label font-weight-bold">Address</label>
+                                    <textarea class="form-control" rows="2" placeholder="Full address"></textarea>
+                                </div>
+                                <div class="col-12 text-center mt-4">
+                                    <button type="submit" class="btn btn-warning fw-bold px-5 py-2">Submit Enquiry</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
     <footer id="contact" class="pt-5">
         <div class="container pb-4">
             <div class="row g-4">
                 <div class="col-md-5">
                     <h4 class="fw-bold text-warning mb-3">RBS INTER COLLEGE</h4>
-                    <p><i class="fa-solid fa-location-dot me-2"></i> Bithara, Aliganj, Etah, Uttar Pradesh - 207247</p>
-                    <p><i class="fa-solid fa-phone me-2"></i> Manager (Vishnu Kant): +91 6395052394</p>
-                    <p><i class="fa-solid fa-school me-2"></i> Classes: NC to Class 12th</p>
+                    <p><i class="fa-solid fa-location-dot me-2 text-warning"></i> Bithara, Aliganj, Etah, Uttar Pradesh - 207247</p>
+                    <p><i class="fa-solid fa-phone me-2 text-warning"></i> Manager (Vishnu Kant): +91 6395052394</p>
+                    <p><i class="fa-solid fa-graduation-cap me-2 text-warning"></i> Classes: NC to Class 12th</p>
                 </div>
                 <div class="col-md-3">
                     <h5 class="fw-bold text-warning mb-3">Quick Links</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="text-white text-decoration-none">Admissions</a></li>
-                        <li><a href="#" class="text-white text-decoration-none">Academic Calendar</a></li>
-                        <li><a href="#" class="text-white text-decoration-none">Notice Board</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Home</a></li>
+                        <li class="mb-2"><a href="#academics" class="text-white text-decoration-none">Academic Classes</a></li>
+                        <li class="mb-2"><a href="#admission" class="text-white text-decoration-none">Admission Enquiry</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">
-                    <h5 class="fw-bold text-warning mb-3">Enquiry Hotline</h5>
-                    <p>For admissions or queries, feel free to call the college office during working hours.</p>
-                    <a href="tel:6395052394" class="btn btn-warning fw-bold w-100"><i class="fa-solid fa-phone me-2"></i> Call Now: 6395052394</a>
+                    <h5 class="fw-bold text-warning mb-3">Call For Admissions</h5>
+                    <p>Admissions related enquiry ke liye direct call karein:</p>
+                    <a href="tel:6395052394" class="btn btn-warning fw-bold w-100 py-2"><i class="fa-solid fa-phone me-2"></i> Call: 6395052394</a>
                 </div>
             </div>
         </div>
         <div class="footer-bottom text-center text-muted">
-            <small>© 2026 RBS Inter College, Bithara, Aliganj. All Rights Reserved.</small>
+            <small>© 2026 RBS Inter College, Bithara, Aliganj, Etah. All Rights Reserved.</small>
         </div>
     </footer>
 
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
