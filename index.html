@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rambax Singh Inter College - Admin Portal</title>
   <style>
-    /* Global Reset */
     * {
       margin: 0;
       padding: 0;
@@ -16,13 +15,14 @@
     body {
       background-color: #f4f6f9;
       color: #333;
+      min-height: 100vh;
     }
 
-    /* Header & School Photo Banner Section */
+    /* Header & Banner Section */
     .header-banner {
       position: relative;
-      background: linear-gradient(rgba(15, 32, 67, 0.75), rgba(15, 32, 67, 0.75)), 
-                  url('school-photo.jpg') center/cover no-repeat; /* Yahan school photo ka link dalein */
+      background: linear-gradient(rgba(15, 32, 67, 0.8), rgba(15, 32, 67, 0.8)), 
+                  url('https://via.placeholder.com/1200x400?text=Rambax+Singh+Inter+College') center/cover no-repeat;
       height: 200px;
       display: flex;
       align-items: center;
@@ -33,26 +33,26 @@
     }
 
     .header-banner h1 {
-      font-size: 2.5rem;
+      font-size: 2.2rem;
       letter-spacing: 1px;
       text-transform: uppercase;
       font-weight: 700;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      padding: 0 15px;
     }
 
-    /* Main Container Layout */
+    /* Layout */
     .main-container {
-      max-width: 1100px;
-      margin: -40px auto 40px auto;
+      max-width: 1000px;
+      margin: -30px auto 40px auto;
       padding: 0 20px;
       display: grid;
-      grid-template-columns: 320px 1fr;
+      grid-template-columns: 300px 1fr;
       gap: 25px;
       position: relative;
       z-index: 10;
     }
 
-    /* Manager Profile Section */
+    /* Manager Card */
     .manager-card {
       background: #ffffff;
       border-radius: 12px;
@@ -63,9 +63,8 @@
     }
 
     .manager-img-wrapper {
-      position: relative;
-      width: 130px;
-      height: 130px;
+      width: 120px;
+      height: 120px;
       margin: 0 auto 15px auto;
     }
 
@@ -74,32 +73,31 @@
       height: 100%;
       border-radius: 50%;
       object-fit: cover;
-      border: 4px solid #1a365d;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      border: 3px solid #1a365d;
     }
 
     .manager-card h3 {
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       color: #1a365d;
       margin-bottom: 5px;
     }
 
     .manager-card p {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: #666;
       font-weight: 600;
     }
 
-    /* Login Panel / Form Section */
+    /* Login Box */
     .login-card {
       background: #ffffff;
       border-radius: 12px;
-      padding: 35px;
+      padding: 30px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.08);
     }
 
     .login-card h2 {
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       color: #1a365d;
       margin-bottom: 20px;
       border-bottom: 2px solid #e2e8f0;
@@ -117,18 +115,15 @@
       color: #4a5568;
     }
 
-    /* Confidential Info Badge */
     .confidential-badge {
       display: inline-block;
       background-color: #edf2f7;
-      color: #718096;
+      color: #4a5568;
       padding: 8px 12px;
       border-radius: 6px;
       font-size: 0.85rem;
-      font-style: italic;
     }
 
-    /* Password Input with Show/Hide Toggle */
     .password-field-wrapper {
       position: relative;
     }
@@ -140,11 +135,6 @@
       border-radius: 6px;
       font-size: 1rem;
       outline: none;
-      transition: border-color 0.2s;
-    }
-
-    .form-control:focus {
-      border-color: #2b6cb0;
     }
 
     .toggle-password-btn {
@@ -155,7 +145,6 @@
       cursor: pointer;
       font-size: 1.2rem;
       user-select: none;
-      color: #718096;
     }
 
     .submit-btn {
@@ -168,53 +157,45 @@
       font-weight: 600;
       border-radius: 6px;
       cursor: pointer;
-      transition: background-color 0.2s;
     }
 
     .submit-btn:hover {
       background-color: #2b6cb0;
     }
 
-    /* Responsive Design */
     @media (max-width: 768px) {
       .main-container {
         grid-template-columns: 1fr;
         margin-top: 20px;
-      }
-      
-      .header-banner h1 {
-        font-size: 1.8rem;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- 1. Header with School Photos Overlay -->
+  <!-- Header Section -->
   <header class="header-banner">
     <h1>Rambax Singh Inter College</h1>
   </header>
 
-  <!-- Main Content Layout -->
+  <!-- Main Container -->
   <div class="main-container">
     
-    <!-- 2. Manager Profile Card -->
+    <!-- Manager Profile -->
     <aside class="manager-card">
       <div class="manager-img-wrapper">
-        <!-- Manager photo link badlein -->
-        <img src="manager-photo.jpg" alt="Manager Photo" class="manager-img">
+        <img src="https://via.placeholder.com/150?text=Manager" alt="Manager Photo" class="manager-img">
       </div>
       <h3>Manager Name</h3>
       <p>Management / Administration</p>
     </aside>
 
-    <!-- 3 & 4. Admin Portal Form (Hidden Admin ID & Password Toggle) -->
+    <!-- Admin Security Portal -->
     <main class="login-card">
       <h2>Admin Security Portal</h2>
 
       <form id="adminLoginForm" onsubmit="handleLogin(event)">
-        
-        <!-- ADMIN ID: Fully Hidden from UI / Confidential -->
+        <!-- Admin ID Hidden -->
         <input type="hidden" id="adminId" name="admin_id" value="CONFIDENTIAL_ADMIN_ID">
 
         <div class="form-group">
@@ -224,24 +205,12 @@
           </div>
         </div>
 
-        <!-- Password Field with Show/Hide Toggle -->
+        <!-- Password Field -->
         <div class="form-group">
           <label for="passwordInput">Enter Password</label>
           <div class="password-field-wrapper">
-            <input 
-              type="password" 
-              id="passwordInput" 
-              class="form-control" 
-              placeholder="••••••••" 
-              required
-            >
-            <span 
-              class="toggle-password-btn" 
-              id="toggleIcon" 
-              onclick="togglePasswordVisibility()" 
-              title="Show/Hide Password">
-              👁️
-            </span>
+            <input type="password" id="passwordInput" class="form-control" placeholder="••••••••" required>
+            <span class="toggle-password-btn" id="toggleIcon" onclick="togglePasswordVisibility()">👁️</span>
           </div>
         </div>
 
@@ -252,27 +221,22 @@
   </div>
 
   <script>
-    // Password Show / Hide Functionality
     function togglePasswordVisibility() {
       const passwordInput = document.getElementById('passwordInput');
       const toggleIcon = document.getElementById('toggleIcon');
 
       if (passwordInput.type === 'password') {
         passwordInput.type = 'text';
-        toggleIcon.textContent = '🙈'; // Hide Icon
+        toggleIcon.textContent = '🙈';
       } else {
         passwordInput.type = 'password';
-        toggleIcon.textContent = '👁️'; // Show Icon
+        toggleIcon.textContent = '👁️';
       }
     }
 
-    // Login Form Submission Handling Example
     function handleLogin(event) {
       event.preventDefault();
-      const password = document.getElementById('passwordInput').value;
-      const hiddenAdminId = document.getElementById('adminId').value;
-
-      alert("Form submitted successfully!\nAdmin ID (Confidential): " + hiddenAdminId);
+      alert("Login attempt successful!");
     }
   </script>
 
