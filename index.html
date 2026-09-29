@@ -1,634 +1,253 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RBS Inter College | Bithara, Aliganj, Etah</title>
-    
-    <!-- Google Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    
-    <style>
-        :root {
-            --primary-navy: #0B1D3A;
-            --accent-gold: #C5A059;
-            --light-bg: #F8F9FA;
-        }
-
-        body { 
-            font-family: 'Poppins', sans-serif; 
-            background-color: #f4f6f9;
-            color: #333;
-        }
-
-        /* Top Bar */
-        .top-bar { 
-            background-color: var(--primary-navy); 
-            color: #fff; 
-            padding: 8px 0; 
-            font-size: 0.88rem; 
-            border-bottom: 2px solid var(--accent-gold); 
-        }
-
-        /* Header & Logo */
-        .header-section { padding: 15px 0; background: #fff; }
-        .logo-circle {
-            width: 95px; height: 95px; border-radius: 50%;
-            background-color: #0A192F; border: 3px double var(--accent-gold);
-            display: flex; align-items: center; justify-content: center;
-            flex-direction: column; color: var(--accent-gold); margin: auto;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-        }
-        .logo-title { font-size: 20px; font-weight: 900; color: #fff; margin: 0; line-height: 1; }
-        .school-title { color: var(--primary-navy); font-weight: 900; font-size: 2.2rem; margin-bottom: 0; }
-        .school-sub { color: var(--accent-gold); font-weight: 700; font-size: 1.1rem; }
-
-        /* Navbar */
-        .navbar-custom { background-color: var(--primary-navy); border-top: 1px solid var(--accent-gold); }
-        .navbar-custom .nav-link { color: #fff !important; font-weight: 600; text-transform: uppercase; padding: 12px 16px !important; font-size: 0.88rem; letter-spacing: 0.5px; }
-        .navbar-custom .nav-link:hover { background-color: var(--accent-gold); color: #000 !important; border-radius: 4px; }
-
-        /* Hero Banner */
-        .hero-banner {
-            background: linear-gradient(rgba(11, 29, 58, 0.85), rgba(11, 29, 58, 0.85)), url('rbs8.jpeg') center/cover;
-            color: #fff; padding: 90px 0; text-align: center;
-        }
-
-        /* Cards & Section Headers */
-        .section-title { color: var(--primary-navy); font-weight: 800; position: relative; padding-bottom: 10px; }
-        .section-title::after { content: ''; width: 60px; height: 3px; background: var(--accent-gold); position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); }
-
-        .info-card { border: none; border-top: 4px solid var(--primary-navy); box-shadow: 0 5px 15px rgba(0,0,0,0.06); transition: 0.3s; }
-        .info-card:hover { transform: translateY(-5px); }
-
-        .gallery-img { width: 100%; height: 230px; object-fit: cover; border-radius: 8px; border: 2px solid #ddd; transition: 0.3s; }
-        .gallery-img:hover { transform: scale(1.03); border-color: var(--accent-gold); }
-
-        .manager-img { width: 150px; height: 150px; object-fit: cover; border-radius: 50%; border: 4px solid var(--accent-gold); box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
-        
-        .admin-section { display: none; background: #fff; padding: 25px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
-        .admin-header { background: var(--primary-navy); color: #fff; padding: 15px; border-radius: 8px; border-bottom: 3px solid var(--accent-gold); }
-
-        /* Print Marksheet Styling */
-        @media print {
-            body * { visibility: hidden; }
-            #printableMarksheet, #printableMarksheet * { visibility: visible; }
-            #printableMarksheet { position: absolute; left: 0; top: 0; width: 100%; border: 2px solid #000; padding: 20px; }
-        }
-
-        .marksheet-box { border: 4px double var(--primary-navy); padding: 25px; background: #fff; box-shadow: 0 0 15px rgba(0,0,0,0.08); }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cinema-X AI Studio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background-color: #060814; color: #f3f4f6; font-family: sans-serif; }
+    .neon-border { box-shadow: 0 0 25px rgba(99, 102, 241, 0.35); }
+    canvas { background: radial-gradient(circle at center, #111827 0%, #030712 100%); }
+  </style>
 </head>
-<body>
+<body class="min-h-screen flex flex-col items-center p-4 md:p-8">
 
-    <!-- TOP BAR -->
-    <div class="top-bar">
-        <div class="container d-flex justify-content-between align-items-center flex-wrap">
-            <div>
-                <i class="fa-solid fa-location-dot text-warning me-2"></i> Bithara, Aliganj, Etah (207247)
-                <span class="ms-3 d-none d-md-inline"><i class="fa-solid fa-phone text-warning me-2"></i> +91 6395052394</span>
-            </div>
-            <div>
-                <span>Manager: <strong>Vishnu Kant</strong></span>
-                <button class="btn btn-sm btn-outline-warning ms-3 text-white fw-bold" data-bs-toggle="modal" data-bs-target="#loginModal"><i class="fa-solid fa-lock me-1"></i> Admin Login</button>
-            </div>
+  <!-- Header -->
+  <header class="w-full max-w-5xl flex justify-between items-center pb-6 border-b border-gray-800">
+    <div>
+      <h1 class="text-2xl md:text-3xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-500">
+        CINEMA-X AI
+      </h1>
+      <p class="text-xs text-gray-400 mt-1">Prompt to Motion & Voiceover Studio</p>
+    </div>
+    <div class="flex items-center space-x-2">
+      <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span class="text-xs text-gray-300">Engine Ready</span>
+    </div>
+  </header>
+
+  <!-- Main Studio Layout -->
+  <main class="w-full max-w-5xl mt-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+    <!-- Controls & Prompt Input -->
+    <div class="lg:col-span-5 flex flex-col space-y-4">
+      <div class="bg-gray-900/80 p-5 rounded-2xl border border-gray-800 neon-border">
+        <label class="block text-sm font-semibold text-gray-300 mb-2">Apni Story / Scene Prompt Likhein:</label>
+        <textarea id="promptInput" rows="4" class="w-full bg-gray-950 border border-gray-700 rounded-xl p-3 text-sm text-gray-100 focus:outline-none focus:border-indigo-500" placeholder="Udaharan: Ek warrior andheri gufa mein chamakta hua heera dhoond raha hai..."></textarea>
+
+        <div class="grid grid-cols-2 gap-3 mt-3">
+          <div>
+            <label class="block text-xs text-gray-400 mb-1">Visual Style</label>
+            <select id="styleSelect" class="w-full bg-gray-950 border border-gray-700 rounded-lg p-2 text-xs text-gray-200">
+              <option value="3D Cinematic Sci-Fi">3D Hyper Cinematic</option>
+              <option value="Anime / Manga">2D Anime Style</option>
+              <option value="Cyberpunk Neon">Cyberpunk Neon</option>
+              <option value="Deep Fantasy Drama">Deep Fantasy</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs text-gray-400 mb-1">Voice Language</label>
+            <select id="langSelect" class="w-full bg-gray-950 border border-gray-700 rounded-lg p-2 text-xs text-gray-200">
+              <option value="hi-IN">Hindi Voice</option>
+              <option value="en-US">English Voice</option>
+            </select>
+          </div>
         </div>
+
+        <button id="generateBtn" class="mt-5 w-full py-3.5 px-6 rounded-xl font-bold text-sm tracking-wide text-white bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:brightness-110 active:scale-95 transition shadow-lg shadow-indigo-600/30">
+          ▶ GENERATE & PLAY FILM
+        </button>
+      </div>
+
+      <!-- Live Pipeline Status -->
+      <div class="bg-gray-900/50 p-4 rounded-xl border border-gray-800 text-xs font-mono text-gray-400">
+        <div class="text-gray-300 font-semibold mb-1">Live Telemetry:</div>
+        <div id="telemetryStatus">Waiting for user prompt...</div>
+      </div>
     </div>
 
-    <!-- MAIN HEADER -->
-    <header class="header-section">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-2 text-center text-md-start mb-2 mb-md-0">
-                    <div class="logo-circle">
-                        <small style="font-size:7px; letter-spacing:0.5px;">RBS INTER COLLEGE</small>
-                        <span class="logo-title">RBS</span>
-                        <i class="fa-solid fa-book-open my-1" style="font-size:12px;"></i>
-                        <small style="font-size:6px;">BITHARA ETAH</small>
-                    </div>
-                </div>
-                <div class="col-md-10 text-center text-md-start">
-                    <h1 class="school-title">RBS INTER COLLEGE</h1>
-                    <div class="school-sub">BITHARA, ALIGANJ, ETAH (U.P.) - 207247</div>
-                    <small class="text-muted fw-semibold"><i class="fa-solid fa-graduation-cap text-warning"></i> Recognized & Affiliated Education | Class 1st to 12th</small>
-                </div>
-            </div>
+    <!-- Screen / Cinema Canvas Player -->
+    <div class="lg:col-span-7 flex flex-col space-y-3">
+      <div class="relative w-full aspect-video rounded-2xl overflow-hidden border border-gray-800 shadow-2xl bg-black flex items-center justify-center">
+        <canvas id="cinemaCanvas" width="960" height="540" class="w-full h-full object-cover"></canvas>
+        <div id="idleOverlay" class="absolute inset-0 flex flex-col items-center justify-center bg-black/60 backdrop-blur-sm pointer-events-none">
+          <svg class="w-12 h-12 text-indigo-400 mb-2 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <p class="text-sm text-gray-400">Prompt likhkar 'Generate' par click karein</p>
         </div>
-    </header>
+      </div>
 
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
-        <div class="container">
-            <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#academics">Academics (1-12)</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#gallery">School Gallery</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#admission">Online Admission</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#manager">Manager Profile</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact Us</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- MAIN PUBLIC CONTENT -->
-    <div id="publicContent">
-        <!-- HERO BANNER -->
-        <div class="hero-banner">
-            <div class="container">
-                <h1 class="display-4 fw-bold mb-3">Welcome to RBS Inter College</h1>
-                <p class="lead text-warning fw-semibold mb-4">Quality Education & Character Building for Class 1st to 12th</p>
-                <a href="#admission" class="btn btn-lg btn-warning fw-bold px-4 py-2 shadow"><i class="fa-solid fa-paper-plane me-2"></i> Fill Admission Form</a>
-            </div>
-        </div>
-
-        <!-- ACADEMICS SECTION -->
-        <section class="py-5" id="academics">
-            <div class="container">
-                <div class="text-center mb-5">
-                    <h2 class="section-title mb-3">OUR ACADEMICS (CLASS 1st TO 12th)</h2>
-                </div>
-                <div class="row g-4">
-                    <div class="col-md-4">
-                        <div class="card info-card p-4 text-center h-100">
-                            <i class="fa-solid fa-book-open fs-1 text-warning mb-3"></i>
-                            <h4 class="fw-bold">Primary Wing (Class 1st - 5th)</h4>
-                            <p class="text-muted">Strong foundation building, activity-based learning, and interactive core concepts.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card info-card p-4 text-center h-100">
-                            <i class="fa-solid fa-layer-group fs-1 text-warning mb-3"></i>
-                            <h4 class="fw-bold">Middle Wing (Class 6th - 8th)</h4>
-                            <p class="text-muted">Focus on discipline, moral values, conceptual clarity, and skill improvement.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card info-card p-4 text-center h-100">
-                            <i class="fa-solid fa-user-graduate fs-1 text-warning mb-3"></i>
-                            <h4 class="fw-bold">Secondary & Senior (9th - 12th)</h4>
-                            <p class="text-muted">Comprehensive board exam preparation with experienced and dedicated faculty.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- PHOTO GALLERY SECTION -->
-        <section class="py-5 bg-white" id="gallery">
-            <div class="container">
-                <div class="text-center mb-5">
-                    <h2 class="section-title mb-3">LIFE AT RBS INTER COLLEGE</h2>
-                    <p class="text-muted">Glimpses of events, celebrations, and achievements at our school</p>
-                </div>
-                <div class="row g-4">
-                    <div class="col-md-4 col-sm-6">
-                        <img src="rbs3.jpeg" alt="Teachers Day Celebration" class="gallery-img shadow-sm">
-                        <p class="text-center mt-2 fw-semibold text-secondary">Teachers' Day Celebration</p>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <img src="rbs7.jpeg" alt="Republic Day Award" class="gallery-img shadow-sm">
-                        <p class="text-center mt-2 fw-semibold text-secondary">26th January Student Award</p>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <img src="rbs10.jpeg" alt="Cultural Event" class="gallery-img shadow-sm">
-                        <p class="text-center mt-2 fw-semibold text-secondary">Cultural & Traditional Event</p>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <img src="rbs12.jpeg" alt="Student Recognition" class="gallery-img shadow-sm">
-                        <p class="text-center mt-2 fw-semibold text-secondary">Academic Appreciation</p>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <img src="rbs11.jpeg" alt="Student Program" class="gallery-img shadow-sm">
-                        <p class="text-center mt-2 fw-semibold text-secondary">Student Program</p>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <img src="rbs8.jpeg" alt="Staff Gathering" class="gallery-img shadow-sm">
-                        <p class="text-center mt-2 fw-semibold text-secondary">School Management & Staff</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ONLINE ADMISSION FORM -->
-        <section class="py-5 bg-light" id="admission">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-8">
-                        <div class="card shadow-sm p-4 border-0">
-                            <h3 class="fw-bold text-center mb-2" style="color: var(--primary-navy);">Online Admission Registration</h3>
-                            <p class="text-center text-muted mb-4">Class 1st se Class 12th tak ke liye admission form bharein</p>
-                            
-                            <form id="publicAdmissionForm">
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <label class="form-label fw-bold">Student Name</label>
-                                        <input type="text" id="sName" class="form-control" required placeholder="Full Name">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label fw-bold">Father's Name</label>
-                                        <input type="text" id="sFather" class="form-control" required placeholder="Father Name">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label fw-bold">Select Class</label>
-                                        <select id="sClass" class="form-select" required>
-                                            <option value="">-- Choose Class --</option>
-                                            <option>Class 1st</option><option>Class 2nd</option><option>Class 3rd</option>
-                                            <option>Class 4th</option><option>Class 5th</option><option>Class 6th</option>
-                                            <option>Class 7th</option><option>Class 8th</option><option>Class 9th</option>
-                                            <option>Class 10th</option><option>Class 11th</option><option>Class 12th</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label fw-bold">Mobile Number</label>
-                                        <input type="tel" id="sPhone" class="form-control" required placeholder="Mobile No.">
-                                    </div>
-                                    <div class="col-12">
-                                        <label class="form-label fw-bold">Address</label>
-                                        <textarea id="sAddress" class="form-control" rows="2" placeholder="Village / Area / Post"></textarea>
-                                    </div>
-                                    <div class="col-12 text-center mt-4">
-                                        <button type="submit" class="btn btn-warning fw-bold px-5 py-2 shadow-sm"><i class="fa-solid fa-check-circle me-2"></i> Submit Application</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- MANAGER PROFILE -->
-        <section class="py-5" id="manager">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-md-4 text-center mb-4 mb-md-0">
-                        <div class="p-4 bg-white shadow-sm rounded border">
-                            <img src="rbs12.jpeg" alt="Manager Vishnu Kant" class="manager-img mb-3">
-                            <h4 class="fw-bold mb-0" style="color: var(--primary-navy);">Vishnu Kant</h4>
-                            <p class="text-warning fw-bold mb-0">Manager, RBS Inter College</p>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <h3 class="fw-bold mb-3" style="color: var(--primary-navy);">Manager's Message</h3>
-                        <p class="lead text-secondary">"Welcome to RBS Inter College. Our commitment is to provide students of Bithara, Aliganj with superior educational opportunities. From Class 1st to 12th, we focus on developing knowledge, character, discipline, and holistic growth."</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <!-- Subtitles Display -->
+      <div class="bg-gray-950 p-3 rounded-xl border border-gray-800 text-center">
+        <p id="subtitles" class="text-sm font-medium text-yellow-300 italic min-h-[20px]">Subtitles yahan dikhenge...</p>
+      </div>
     </div>
 
-    <!-- ADMIN DASHBOARD PANEL (HIDDEN BY DEFAULT) -->
-    <div class="container my-5">
-        <div id="adminPanel" class="admin-section">
-            <div class="admin-header d-flex justify-content-between align-items-center flex-wrap mb-4">
-                <div class="d-flex align-items-center">
-                    <img src="rbs12.jpeg" alt="Manager" class="rounded-circle border border-2 border-warning me-3" style="width: 55px; height: 55px; object-fit: cover;">
-                    <div>
-                        <h4 class="mb-0 text-warning fw-bold">RBS ADMIN PORTAL</h4>
-                        <small>Logged in as: <strong>Vishnu Kant (Manager)</strong></small>
-                    </div>
-                </div>
-                <button class="btn btn-sm btn-danger fw-bold" onclick="logoutAdmin()"><i class="fa-solid fa-right-from-bracket me-1"></i> Logout</button>
-            </div>
+  </main>
 
-            <!-- TAB CONTROLS -->
-            <ul class="nav nav-tabs mb-4" id="adminTabs">
-                <li class="nav-item">
-                    <button class="nav-link active fw-bold" data-bs-toggle="tab" data-bs-target="#tabSubmissions"><i class="fa-solid fa-list-check me-2"></i> Received Applications</button>
-                </li>
-                <li class="nav-item">
-                    <button class="nav-link fw-bold" data-bs-toggle="tab" data-bs-target="#tabMarksheet"><i class="fa-solid fa-file-invoice me-2"></i> Marksheet Generator</button>
-                </li>
-            </ul>
+  <script>
+    const canvas = document.getElementById('cinemaCanvas');
+    const ctx = canvas.getContext('2d');
+    const promptInput = document.getElementById('promptInput');
+    const generateBtn = document.getElementById('generateBtn');
+    const styleSelect = document.getElementById('styleSelect');
+    const langSelect = document.getElementById('langSelect');
+    const telemetry = document.getElementById('telemetryStatus');
+    const subtitles = document.getElementById('subtitles');
+    const idleOverlay = document.getElementById('idleOverlay');
 
-            <div class="tab-content">
-                <!-- TAB 1: ONLINE APPLICATIONS TABLE -->
-                <div class="tab-pane fade show active" id="tabSubmissions">
-                    <h5 class="fw-bold mb-3 text-navy"><i class="fa-solid fa-users me-2"></i> Registered Students List</h5>
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-striped align-middle">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th>#</th>
-                                    <th>Student Name</th>
-                                    <th>Father Name</th>
-                                    <th>Class</th>
-                                    <th>Mobile</th>
-                                    <th>Address</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody id="studentTableBody">
-                                <!-- Dynamic Rows -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+    let animationFrameId = null;
+    let isRendering = false;
 
-                <!-- TAB 2: MARKSHEET GENERATOR -->
-                <div class="tab-pane fade" id="tabMarksheet">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <div class="card p-3 border">
-                                <h5 class="fw-bold text-navy mb-3">Student Details & Marks</h5>
-                                <form id="marksheetForm">
-                                    <div class="mb-2">
-                                        <label class="form-label small fw-bold">Student Name</label>
-                                        <input type="text" id="mName" class="form-control form-control-sm" required>
-                                    </div>
-                                    <div class="mb-2">
-                                        <label class="form-label small fw-bold">Father's Name</label>
-                                        <input type="text" id="mFather" class="form-control form-control-sm" required>
-                                    </div>
-                                    <div class="row g-2 mb-2">
-                                        <div class="col-6">
-                                            <label class="form-label small fw-bold">Roll No.</label>
-                                            <input type="text" id="mRoll" class="form-control form-control-sm" required placeholder="e.g. 202601">
-                                        </div>
-                                        <div class="col-6">
-                                            <label class="form-label small fw-bold">Class</label>
-                                            <input type="text" id="mClass" class="form-control form-control-sm" required placeholder="Class 10th">
-                                        </div>
-                                    </div>
-                                    <div class="mb-2">
-                                        <label class="form-label small fw-bold">Address</label>
-                                        <input type="text" id="mAddress" class="form-control form-control-sm" required placeholder="Aliganj, Etah">
-                                    </div>
-                                    <hr>
-                                    <h6>Marks Entry (Out of 100)</h6>
-                                    <div class="row g-2">
-                                        <div class="col-6"><input type="number" id="mMath" class="form-control form-control-sm mb-2" placeholder="Maths"></div>
-                                        <div class="col-6"><input type="number" id="mSci" class="form-control form-control-sm mb-2" placeholder="Science"></div>
-                                        <div class="col-6"><input type="number" id="mEng" class="form-control form-control-sm mb-2" placeholder="English"></div>
-                                        <div class="col-6"><input type="number" id="mHin" class="form-control form-control-sm mb-2" placeholder="Hindi"></div>
-                                    </div>
-                                    <button type="button" onclick="generateMarksheet()" class="btn btn-warning btn-sm w-100 fw-bold mt-2"><i class="fa-solid fa-arrows-rotate me-1"></i> Generate Marksheet</button>
-                                </form>
-                            </div>
-                        </div>
+    // Web Audio Synthesizer (Zero-lag cinematic sound FX)
+    function playCinematicSound(freq, duration) {
+      try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {
+        console.warn("Audio Context blocked:", e);
+      }
+    }
 
-                        <!-- MARKSHEET PREVIEW -->
-                        <div class="col-md-7">
-                            <div id="printableMarksheet" class="marksheet-box">
-                                <div class="text-center border-bottom pb-3 mb-3">
-                                    <h3 class="fw-bold mb-1" style="color: var(--primary-navy);">RBS INTER COLLEGE</h3>
-                                    <p class="mb-0 small fw-bold">BITHARA, ALIGANJ, ETAH (U.P.) - 207247</p>
-                                    <span class="badge bg-warning text-dark mt-1">OFFICIAL ACADEMIC MARKSHEET</span>
-                                </div>
+    // Direct Speech Synthesis (Audio Narration)
+    function speakNarration(text, langCode, onEndCallback) {
+      window.speechSynthesis.cancel(); // Reset any queued speech
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = langCode;
+      utterance.rate = 0.95;
+      utterance.pitch = 1.0;
 
-                                <div class="row small mb-3">
-                                    <div class="col-6">
-                                        <p class="mb-1"><strong>Student Name:</strong> <span id="outName">---</span></p>
-                                        <p class="mb-1"><strong>Father Name:</strong> <span id="outFather">---</span></p>
-                                        <p class="mb-1"><strong>Roll Number:</strong> <span id="outRoll">---</span></p>
-                                    </div>
-                                    <div class="col-6">
-                                        <p class="mb-1"><strong>Class:</strong> <span id="outClass">---</span></p>
-                                        <p class="mb-1"><strong>Session:</strong> 2025-2026</p>
-                                        <p class="mb-1"><strong>Address:</strong> <span id="outAddress">---</span></p>
-                                    </div>
-                                </div>
+      // Select matching voice if available
+      const voices = window.speechSynthesis.getVoices();
+      const matchedVoice = voices.find(v => v.lang.includes(langCode.slice(0, 2)));
+      if (matchedVoice) utterance.voice = matchedVoice;
 
-                                <table class="table table-bordered table-sm small text-center mb-3">
-                                    <thead class="table-light">
-                                        <tr>
-                                            <th>Subject</th>
-                                            <th>Max Marks</th>
-                                            <th>Marks Obtained</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr><td>Mathematics</td><td>100</td><td id="outMath">0</td></tr>
-                                        <tr><td>Science</td><td>100</td><td id="outSci">0</td></tr>
-                                        <tr><td>English</td><td>100</td><td id="outEng">0</td></tr>
-                                        <tr><td>Hindi</td><td>100</td><td id="outHin">0</td></tr>
-                                    </tbody>
-                                </table>
+      utterance.onend = () => {
+        if (onEndCallback) onEndCallback();
+      };
 
-                                <div class="p-2 bg-light border rounded mb-3 small d-flex justify-content-between">
-                                    <span><strong>Grand Total:</strong> <span id="outTotal">0</span> / 400</span>
-                                    <span><strong>Percentage:</strong> <span id="outPer">0%</span></span>
-                                    <span><strong>Result:</strong> <span id="outResult" class="fw-bold">---</span></span>
-                                </div>
+      utterance.onerror = (err) => {
+        console.warn("Speech error:", err);
+        if (onEndCallback) onEndCallback();
+      };
 
-                                <div class="d-flex justify-content-between align-items-end mt-4 pt-3">
-                                    <div class="text-center">
-                                        <small>Class Teacher Sign</small>
-                                    </div>
-                                    <div class="text-center">
-                                        <strong style="color:var(--primary-navy)">Vishnu Kant</strong><br>
-                                        <small>Manager Signature</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <button onclick="window.print()" class="btn btn-dark w-100 mt-3 fw-bold"><i class="fa-solid fa-print me-2"></i> Print / Download Marksheet PDF</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+      window.speechSynthesis.speak(utterance);
+    }
 
-    <!-- LOGIN MODAL -->
-    <div class="modal fade" id="loginModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header text-white" style="background: var(--primary-navy);">
-                    <h5 class="modal-header-title fw-bold"><i class="fa-solid fa-user-shield text-warning me-2"></i> Admin Login</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body p-4">
-                    <form id="adminLoginForm">
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Admin Email ID</label>
-                            <input type="email" id="loginEmail" class="form-control" placeholder="rbsintercollege@123" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Password</label>
-                            <input type="password" id="loginPass" class="form-control" placeholder="vishnukant@207247" required>
-                        </div>
-                        <button type="submit" class="btn btn-warning w-100 fw-bold py-2">Login To Admin Dashboard</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    // Dynamic 3D/Motion Canvas Engine
+    function startCanvasScene(storyPrompt, style) {
+      let frame = 0;
+      const particles = Array.from({ length: 60 }, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        z: Math.random() * 2 + 0.5,
+        speed: Math.random() * 2 + 1,
+        color: style.includes("Neon") ? '#06b6d4' : (style.includes("Anime") ? '#f43f5e' : '#818cf8')
+      }));
 
-    <!-- FOOTER -->
-    <footer id="contact" class="pt-5 mt-5 bg-dark text-white">
-        <div class="container pb-4">
-            <div class="row g-4">
-                <div class="col-md-5">
-                    <h4 class="fw-bold text-warning mb-3">RBS INTER COLLEGE</h4>
-                    <p><i class="fa-solid fa-location-dot me-2 text-warning"></i> Bithara, Aliganj, Etah, Uttar Pradesh - 207247</p>
-                    <p><i class="fa-solid fa-phone me-2 text-warning"></i> Manager (Vishnu Kant): +91 6395052394</p>
-                    <p><i class="fa-solid fa-graduation-cap me-2 text-warning"></i> Class 1st to Class 12th</p>
-                </div>
-                <div class="col-md-3">
-                    <h5 class="fw-bold text-warning mb-3">Quick Navigation</h5>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Home</a></li>
-                        <li class="mb-2"><a href="#academics" class="text-white text-decoration-none">Academics</a></li>
-                        <li class="mb-2"><a href="#gallery" class="text-white text-decoration-none">Gallery</a></li>
-                        <li class="mb-2"><a href="#admission" class="text-white text-decoration-none">Admission Form</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h5 class="fw-bold text-warning mb-3">Contact Helpline</h5>
-                    <a href="tel:6395052394" class="btn btn-warning fw-bold w-100 py-2"><i class="fa-solid fa-phone me-2"></i> Call: 6395052394</a>
-                </div>
-            </div>
-        </div>
-        <div class="bg-black text-center text-muted py-3">
-            <small>© 2026 RBS Inter College, Bithara, Aliganj. All Rights Reserved.</small>
-        </div>
-    </footer>
+      function render() {
+        ctx.fillStyle = 'rgba(5, 7, 18, 0.25)'; // Motion blur trailing
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        // Perspective grid motion
+        ctx.strokeStyle = 'rgba(99, 102, 241, 0.15)';
+        ctx.lineWidth = 1;
+        const horizon = canvas.height * 0.55;
+        const offset = (frame * 2) % 40;
 
-    <!-- JS LOGIC -->
-    <script>
-        // Sample Applications Data Array
-        let studentApplications = [
-            { name: "Rahul Kumar", father: "Suresh Chandra", class: "Class 10th", phone: "9876543210", address: "Aliganj, Etah" }
-        ];
-
-        // Speech AI Functionality
-        function speakWelcome() {
-            if ('speechSynthesis' in window) {
-                let speech = new SpeechSynthesisUtterance();
-                speech.text = "Welcome Mr. Vishnu, let's work together";
-                speech.lang = "en-US";
-                speech.rate = 0.9;
-                window.speechSynthesis.speak(speech);
-            }
+        for (let x = -canvas.width; x < canvas.width * 2; x += 60) {
+          ctx.beginPath();
+          ctx.moveTo(canvas.width / 2, horizon);
+          ctx.lineTo(x, canvas.height);
+          ctx.stroke();
         }
 
-        // Handle Public Admission Form Submission
-        document.getElementById('publicAdmissionForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            let newStudent = {
-                name: document.getElementById('sName').value,
-                father: document.getElementById('sFather').value,
-                class: document.getElementById('sClass').value,
-                phone: document.getElementById('sPhone').value,
-                address: document.getElementById('sAddress').value
-            };
-            studentApplications.push(newStudent);
-            alert("✅ Admission Application Submitted Successfully!");
-            this.reset();
-            renderTable();
+        for (let y = horizon; y < canvas.height; y += 15) {
+          ctx.beginPath();
+          ctx.moveTo(0, y + offset);
+          ctx.lineTo(canvas.width, y + offset);
+          ctx.stroke();
+        }
+
+        // Particle space flythrough
+        particles.forEach(p => {
+          ctx.fillStyle = p.color;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.z * 1.5, 0, Math.PI * 2);
+          ctx.fill();
+
+          p.y -= p.speed;
+          if (p.y < 0) {
+            p.y = canvas.height;
+            p.x = Math.random() * canvas.width;
+          }
         });
 
-        // Handle Admin Login
-        document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            let email = document.getElementById('loginEmail').value;
-            let pass = document.getElementById('loginPass').value;
+        // Cinematic Center Focal Subject (Holographic Core)
+        const pulse = Math.sin(frame * 0.05) * 15;
+        const grad = ctx.createRadialGradient(canvas.width/2, horizon - 40, 10, canvas.width/2, horizon - 40, 140 + pulse);
+        grad.addColorStop(0, 'rgba(168, 85, 247, 0.9)');
+        grad.addColorStop(0.5, 'rgba(59, 130, 246, 0.3)');
+        grad.addColorStop(1, 'transparent');
 
-            if(email === "rbsintercollege@123" && pass === "vishnukant@207247") {
-                let loginModal = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
-                loginModal.hide();
-                
-                document.getElementById('publicContent').style.display = "none";
-                document.getElementById('adminPanel').style.display = "block";
-                
-                renderTable();
-                speakWelcome(); // Trigger Voice Assistant
-            } else {
-                alert("❌ Invalid Email or Password!");
-            }
-        });
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(canvas.width/2, horizon - 40, 140 + pulse, 0, Math.PI * 2);
+        ctx.fill();
 
-        // Logout
-        function logoutAdmin() {
-            document.getElementById('adminPanel').style.display = "none";
-            document.getElementById('publicContent').style.display = "block";
-        }
+        frame++;
+        animationFrameId = requestAnimationFrame(render);
+      }
 
-        // Render Student Applications Table
-        function renderTable() {
-            let tbody = document.getElementById('studentTableBody');
-            tbody.innerHTML = "";
-            studentApplications.forEach((s, idx) => {
-                tbody.innerHTML += `
-                    <tr>
-                        <td>${idx + 1}</td>
-                        <td><strong>${s.name}</strong></td>
-                        <td>${s.father}</td>
-                        <td><span class="badge bg-primary">${s.class}</span></td>
-                        <td>${s.phone}</td>
-                        <td>${s.address}</td>
-                        <td>
-                            <button class="btn btn-sm btn-warning fw-bold" onclick="fillMarksheet('${s.name}', '${s.father}', '${s.class}', '${s.address}')">
-                                <i class="fa-solid fa-file-pen"></i> Create Marksheet
-                            </button>
-                        </td>
-                    </tr>
-                `;
-            });
-        }
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+      render();
+    }
 
-        // Auto-fill student data into Marksheet Generator
-        function fillMarksheet(name, father, sClass, address) {
-            document.getElementById('mName').value = name;
-            document.getElementById('mFather').value = father;
-            document.getElementById('mClass').value = sClass;
-            document.getElementById('mAddress').value = address;
-            
-            // Switch to Marksheet Tab
-            var firstTabEl = document.querySelector('#adminTabs button[data-bs-target="#tabMarksheet"]');
-            var tab = new bootstrap.Tab(firstTabEl);
-            tab.show();
-        }
+    // Main Click Action
+    generateBtn.addEventListener('click', () => {
+      const prompt = promptInput.value.trim();
+      if (!prompt) {
+        alert("Kripya pehle koi story ya prompt likhein!");
+        return;
+      }
 
-        // Generate Marksheet Logic
-        function generateMarksheet() {
-            let name = document.getElementById('mName').value;
-            let father = document.getElementById('mFather').value;
-            let roll = document.getElementById('mRoll').value;
-            let sClass = document.getElementById('mClass').value;
-            let address = document.getElementById('mAddress').value;
+      idleOverlay.style.display = 'none';
+      isRendering = true;
+      telemetry.innerHTML = "<span class='text-indigo-400'>[1/3] Story synthesized. Starting audio & camera engines...</span>";
 
-            let math = parseFloat(document.getElementById('mMath').value) || 0;
-            let sci = parseFloat(document.getElementById('mSci').value) || 0;
-            let eng = parseFloat(document.getElementById('mEng').value) || 0;
-            let hin = parseFloat(document.getElementById('mHin').value) || 0;
+      // 1. Play cinematic synth tone
+      playCinematicSound(120, 1.2);
 
-            let total = math + sci + eng + hin;
-            let per = (total / 400) * 100;
+      // 2. Start dynamic motion animation on canvas
+      startCanvasScene(prompt, styleSelect.value);
 
-            document.getElementById('outName').innerText = name || "---";
-            document.getElementById('outFather').innerText = father || "---";
-            document.getElementById('outRoll').innerText = roll || "---";
-            document.getElementById('outClass').innerText = sClass || "---";
-            document.getElementById('outAddress').innerText = address || "---";
+      // 3. Prepare narration text
+      const narrationText = prompt.length > 180 ? prompt.substring(0, 180) + "..." : prompt;
+      subtitles.innerText = `“${narrationText}”`;
 
-            document.getElementById('outMath').innerText = math;
-            document.getElementById('outSci').innerText = sci;
-            document.getElementById('outEng').innerText = eng;
-            document.getElementById('outHin').innerText = hin;
+      telemetry.innerHTML = "<span class='text-emerald-400'>[2/3] Live rendering active. Voice narration playing...</span>";
 
-            document.getElementById('outTotal').innerText = total;
-            document.getElementById('outPer').innerText = per.toFixed(2) + "%";
+      // 4. Speak narration aloud
+      speakNarration(narrationText, langSelect.value, () => {
+        telemetry.innerHTML = "<span class='text-gray-300'>[3/3] Sequence finished. Ready for next prompt.</span>";
+      });
+    });
 
-            let resElement = document.getElementById('outResult');
-            if(per >= 33) {
-                resElement.innerText = "PASSED";
-                resElement.className = "fw-bold text-success";
-            } else {
-                resElement.innerText = "FAILED";
-                resElement.className = "fw-bold text-danger";
-            }
-        }
-    </script>
+    // Pre-load voices for speech synthesis
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.onvoiceschanged = () => {
+        window.speechSynthesis.getVoices();
+      };
+    }
+  </script>
 </body>
 </html>
